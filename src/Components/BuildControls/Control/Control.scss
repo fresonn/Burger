@@ -1,0 +1,21 @@
+.Control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    font-weight: 700;
+    button {
+        display: block;
+        outline: none;
+        cursor: pointer;
+        width: 80px;
+        font: inherit;
+        padding: 5px;
+        margin: 0 5px;
+        border: 1px solid #aa6817;
+    }
+}
+
+
+
+// LEss and Add buttons
