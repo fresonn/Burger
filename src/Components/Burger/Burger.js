@@ -29,7 +29,7 @@ const Burger = props => {
     //     })
     if (!ingredients.length) {
         ingredients = (
-            <h1>Add some...</h1>
+            <h1>Add something</h1>
         )
     }
     return (

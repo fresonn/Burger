@@ -1,3 +1,18 @@
+$less-background: #8F5E1E;
+$less-hover: #99703F;
+$more-background: #D39952;
+$more-hover: #DAA972;
+
+
+
+//prev
+// $less-background: #D39952;
+// $less-hover: #DAA972;
+
+// $more-background: #8F5E1E;
+// $more-hover: #99703F;
+
+
 .Control {
     display: flex;
     justify-content: space-between;
@@ -5,6 +20,7 @@
     margin: 5px 0;
     font-weight: 700;
     button {
+        color: rgb(235, 235, 235);
         display: block;
         outline: none;
         cursor: pointer;
@@ -16,6 +32,49 @@
     }
 }
 
+.Label {
+    padding: 10px;
+    font-weight: bold;
+    width: 80px;
+}
+
+.lessButton {
+    background-color: $less-background;
+    transition: all 170ms ease-in;
+    &:hover, &:active {
+        color: #fff;
+        background-color: $less-hover;
+    }
+}
+
+.moreButton {
+    background-color: $more-background;
+    transition: all 170ms ease-in;
+    &:hover, &:active {
+        color: #fff;
+        background-color: $more-hover;
+    }
+}
 
 
-// LEss and Add buttons
+
+// remove that
+
+// .BuildControl button:disabled {
+//     background-color: #AC9980;
+//     border: 1px solid #7E7365;
+//     color: #ccc;
+//     cursor: default;
+// }
+
+// .BuildControl button:hover:disabled {
+//     background-color: #AC9980;
+//     color: #ccc;
+//     cursor: not-allowed;
+// }
+
+.Label {
+    padding: 10px;
+    font-weight: bold;
+    width: 80px;
+}

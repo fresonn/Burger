@@ -87,6 +87,10 @@
     background: linear-gradient(#7f3608, #702e05);
     margin: 2% auto;
     border-radius: 15px;
+    transition: transform .2s ease-in;
+    &:hover {
+      transform: scale(1.1)
+    }
 }
 
 .Cheese {
@@ -95,6 +99,10 @@
     margin: 2% auto;
     background: linear-gradient(#f4d004, #d6bb22);
     border-radius: 20px;
+    transition: transform .2s ease-in;
+    &:hover {
+      transform: scale(1.1)
+    }
 }
 
 .Salad {
@@ -103,6 +111,10 @@
     margin: 2% auto;
     background: linear-gradient(#228c1d, #91ce50);
     border-radius: 20px;
+    transition: transform .2s ease-in;
+    &:hover {
+      transform: scale(1.1)
+    }
 }
 
 .Bacon {
@@ -110,4 +122,9 @@
     height: 3%;
     background: linear-gradient(#bf3813, #c45e38);
     margin: 2% auto;
+    border-radius: 4px;
+    transition: transform .2s ease-in;
+    &:hover {
+      transform: scale(1.1)
+    }
 }
