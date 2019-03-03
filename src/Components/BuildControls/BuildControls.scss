@@ -1,3 +1,6 @@
+$order-button_ds: rgb(179, 112, 63);
+
+
 .BuildControls {
     width: 100%;
     display: flex;
@@ -7,4 +10,33 @@
     box-shadow: 0 2px 1px #ccc;
     margin: auto;
     padding: 10px 0;
+}
+
+.orderButton {
+    margin-top: 15px;
+    display: block;
+    font: inherit;
+    outline: none;
+    padding: 12px 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgb(23, 23, 23);
+    border: 2px solid saddlebrown;
+    border-radius: 8px;
+    background-color: #CE8F2D;
+    transition: background-color 170ms ease-in;
+    &:hover {
+        cursor: pointer;
+        background-color: #CE8F2D;
+    }
+    &:active {
+        background-color: $order-button_ds;
+    }
+    &:disabled {
+        cursor: default;
+        color: rgb(235, 235, 235);
+        background-color: $order-button_ds;
+        text-shadow: none;
+    }
 }

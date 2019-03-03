@@ -4,6 +4,9 @@ import React, { Component } from 'react'
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/BuildControls/BuildControls'
 
+import Modal from '../../Components/UI/Modal/Modal'
+import Wrapper from '../../Hoc/Wrapper/Wrapper'
+
 const BurgerBuilder = class extends Component {
     state = {
         isOrdered: false,
@@ -73,15 +76,16 @@ const BurgerBuilder = class extends Component {
     render() {
         console.log(this.state)
         return (
-            <>
-            <Burger ingredients={this.state.ingredients} />
-            <BuildControls
-                addIngredFunc={this.newIngredientHandler}
-                deleteInredFunc={this.removeIngredientHandler}
-                totalPrice={this.state.totalPrice}
-                isOrdered={this.state.isOrdered}
-            />
-            </>
+            <Wrapper>
+                <Modal />
+                <Burger ingredients={this.state.ingredients} />
+                <BuildControls
+                    addIngredFunc={this.newIngredientHandler}
+                    deleteInredFunc={this.removeIngredientHandler}
+                    totalPrice={this.state.totalPrice}
+                    isOrdered={this.state.isOrdered}
+                />
+            </Wrapper>
         )
     }
 }

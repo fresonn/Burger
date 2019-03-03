@@ -18,26 +18,19 @@ const Burger = props => {
         .reduce((arr, el) => {
             return [...arr, ...el]
         }, [])
-    // const ingredients = Object.keys(props.ingredients)
-    //     .map(ingred => {
-    //         return [...Array(props.ingredients[ingred])]
-    //             .map((_, i) => {
-    //                 return (
-    //                     <BurgerIngredient type={ingred}/>
-    //                 )
-    //             })
-    //     })
     if (!ingredients.length) {
         ingredients = (
             <h1>Add something</h1>
         )
     }
     return (
-        <div className={classes.Burger}>
-            <BurgerIngredient type={'bread-top'}/>
-            { ingredients }
-            <BurgerIngredient type={'bread-bottom'}/>
-        </div>
+        <section>
+            <div className={classes.Burger}>
+                <BurgerIngredient type={'bread-top'}/>
+                { ingredients }
+                <BurgerIngredient type={'bread-bottom'}/>
+            </div>
+        </section>
     )
 }
 
