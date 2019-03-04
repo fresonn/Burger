@@ -12,7 +12,8 @@ const controls = [
 ]
 
 const BuildControls = props => {
-    const {isOrdered} = props
+    const {isOrdered, purchasingStart} = props
+
     return (
         <section>
             <div className={classes.BuildControls}>
@@ -28,6 +29,7 @@ const BuildControls = props => {
                     )
                 }) }
                 <button
+                    onClick={purchasingStart}
                     className={classes.orderButton}
                     disabled={!isOrdered}
                 >order now</button>

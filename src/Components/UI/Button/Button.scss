@@ -1,0 +1,44 @@
+//  Modal window about order information 
+.CloseButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background: none;
+    transition: transform 140ms ease-in;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        color: rgb(228, 9, 42);
+    }
+}
+
+.ContinueButton {
+    color: #fff;
+    outline: none;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 8px;
+    text-transform: uppercase;
+    font: inherit;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background: #fd9535;
+    border-bottom: solid 2px #d27d00;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    &:hover {
+        cursor: pointer;
+        color: rgb(174, 255, 94);
+        background-color: #ff9d41;
+
+    };
+    &:active {
+        border-bottom: solid 2px #fd9535;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+    }
+}

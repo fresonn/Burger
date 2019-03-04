@@ -1,28 +1,30 @@
 import React, { Component } from 'react'
-
+import classes from './BurgerBuilder.scss'
 
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/BuildControls/BuildControls'
+import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
 
 import Modal from '../../Components/UI/Modal/Modal'
 import Wrapper from '../../Hoc/Wrapper/Wrapper'
 
 const BurgerBuilder = class extends Component {
     state = {
-        isOrdered: false,
         ingredientPrice: {
-            meat: 1.3,
             cheese: 0.8,
+            meat: 1.3,
             salad: 0.5,
             bacon: 0.8
         },
         ingredients: {
-            meat: 0,
             cheese: 0,
+            meat: 0,
             salad: 0,
             bacon: 0
         },
-        totalPrice: 0
+        totalPrice: 0,
+        isOrdered: false,
+        purechasing: false, //
     }
 
     updateOrder = (ingredients) => {
@@ -73,19 +75,47 @@ const BurgerBuilder = class extends Component {
         this.updateOrder(ingredients)
     }
 
+    purechasingHandler = () => {
+        this.setState({
+            purechasing: !this.state.purechasing
+        })
+    }
+
+    continueOrderHandler = () => {
+        console.log(true)
+    }
+
     render() {
         console.log(this.state)
+
+        const modal = (
+            <Modal showModal={this.state.purechasing}
+                   closeModal={this.purechasingHandler}
+                >
+                <OrderSummary
+                    ingredients={this.state.ingredients}
+                    closeModal={this.purechasingHandler}
+                    continueOrder={this.continueOrderHandler}
+                    totalPrice={this.state.totalPrice}
+                />
+            </Modal>
+        )
+
         return (
+            <>
             <Wrapper>
-                <Modal />
+                { this.state.purechasing ? modal : null }
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     addIngredFunc={this.newIngredientHandler}
                     deleteInredFunc={this.removeIngredientHandler}
                     totalPrice={this.state.totalPrice}
                     isOrdered={this.state.isOrdered}
+                    purchasingStart={this.purechasingHandler}
                 />
             </Wrapper>
+            <div className={classes.Test}></div>
+            </>
         )
     }
 }

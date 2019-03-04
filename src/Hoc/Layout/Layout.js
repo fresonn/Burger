@@ -4,7 +4,7 @@ import classes from './Layout.scss'
 const Layout = (props) => {
     return (
         <>
-        <header>
+        <header className={classes.Header}>
             <nav>
                 <ul>
                     <li><span>Toolbar</span></li>

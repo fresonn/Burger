@@ -1,0 +1,16 @@
+$order-backg: blanchedalmond;
+
+
+.OrderSummary {
+    padding: 1px 10px;
+    background-color: $order-backg;
+    position: relative;
+    .firstPar {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+}
+
+.OrderTitle {
+    text-align: center;
+}

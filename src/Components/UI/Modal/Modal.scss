@@ -1,6 +1,33 @@
 .Modal {
     position: absolute;
     z-index: 500;
+    max-width: 500px;
+    background-color: #fff;
+    width: 70%;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    top: 34%;
+    transition: all 300ms ease-out;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+
+}
+
+@keyframes forModal {
+    from {
+        top: 0%;
+        opacity: 0;
+    }
+    to {
+        top: 34%;
+        opacity: 1;
+    }
+}
+
+.Modal.ModalAnimation {
+    animation: forModal 300ms ease-out;
 }
 
 
