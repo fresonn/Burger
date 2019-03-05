@@ -100,7 +100,6 @@ const BurgerBuilder = class extends Component {
                 />
             </Modal>
         )
-
         return (
             <>
             <Wrapper>
@@ -114,7 +113,7 @@ const BurgerBuilder = class extends Component {
                     purchasingStart={this.purechasingHandler}
                 />
             </Wrapper>
-            <div className={classes.Test}></div>
+            <footer className={classes.Test}></footer>
             </>
         )
     }

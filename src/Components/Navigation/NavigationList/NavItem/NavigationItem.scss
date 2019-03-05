@@ -1,0 +1,35 @@
+$tablet-width: 768px;
+$link-color: #fff;
+$link-color_ha: #FFD119;
+
+.NavigationItem {
+    text-transform: uppercase;
+}
+
+.NavLink {
+    box-sizing: border-box;
+    // будет transp рамка внизу
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: $link-color;
+    padding: 15px 8px;
+    font-weight: 700;
+    font-size: 18px;
+    &:hover {
+        color: $link-color_ha;
+    };
+    &:active {
+        border-bottom: 3px solid #fff;
+    }
+}
+
+
+@media(max-width: $tablet-width) {
+    .NavLink {
+        color: $link-color_ha;
+        &:active {
+            color: orangered;
+        }
+    }
+}

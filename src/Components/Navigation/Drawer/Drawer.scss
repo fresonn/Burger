@@ -1,0 +1,42 @@
+$tablet-width: 768px;
+
+
+@mixin hide {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+
+.Drawer {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 60%;
+    max-width: 400px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    background: #fff;
+    transform: translateX(0px);
+    transition: transform .22s ease-in;
+    z-index: 700;
+}
+
+
+@media(min-width: $tablet-width) {
+    .Drawer {
+        @include hide();
+        
+    }
+}

@@ -1,0 +1,64 @@
+$tablet-width: 768px;
+
+
+@mixin forList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin hide {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+
+.ToolBar {
+    background-color: #ac3939;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 600;
+}
+
+
+.ToolWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    div {
+        cursor: pointer;
+        text-transform: uppercase;
+        padding: 15px 8px;
+        font-weight: 700;
+        color: #fff;
+        font-size: 18px;
+    }
+}
+
+
+.NavigationList {
+    @include forList();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+@media(max-width: $tablet-width) {
+    .NavigationList {
+        @include hide();
+    }
+}

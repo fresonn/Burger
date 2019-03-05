@@ -1,18 +1,15 @@
 import React from 'react'
 import classes from './Layout.scss'
 
+
+import ToolBar from '../../Components/Navigation/ToolBar/ToolBar'
+import Drawer from '../../Components/Navigation/Drawer/Drawer'
+
 const Layout = (props) => {
     return (
         <>
-        <header className={classes.Header}>
-            <nav>
-                <ul>
-                    <li><span>Toolbar</span></li>
-                    <li><span>SideDrawer</span></li>
-                    <li><span>Backdrop</span></li>
-                </ul>
-            </nav>
-        </header>
+        <ToolBar />
+        <Drawer />        
         <main className={classes.PageMainContent}>
             { props.children }
         </main>
