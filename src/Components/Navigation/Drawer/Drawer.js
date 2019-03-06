@@ -16,7 +16,9 @@ const Drawer = (props) => {
     const attachedClasses = [classes.Drawer]
 
     if (!isOpen) {
-        attachedClasses.push(classes.Close)
+        attachedClasses.push(classes.Hide)
+    } else {
+        attachedClasses.push(classes.Open)
     }
 
     return (
@@ -25,6 +27,7 @@ const Drawer = (props) => {
         <div className={attachedClasses.join(' ')}>
             <div className={classes.DrawerWrapper}>
                 <Button clickFunc={closeFunc} classFor={'DrawerCloseButton'}>✖</Button>
+                {/* ////////////////////////// */}
                 <Logo />
                 <nav>
                     <NavigationList />

@@ -7,6 +7,17 @@ import NavigationItem from '../NavigationList/NavItem/NavigationItem'
 
 const ToolBar = (props) => {
 
+    const {closeFunc} = props
+    // const {isOpen, closeFunc} = props
+
+    // const attachedClasses = [
+    //     classes.BurgerMenuButton
+    // ]
+
+    // if (isOpen) {
+    //     attachedClasses.push(classes.Close)
+    // }
+
     const links = [
         { title: 'Burger Builder', address: '/' },
         { title: 'Checkout', address: '/' },
@@ -19,7 +30,12 @@ const ToolBar = (props) => {
                 <div className={classes.ToolImgContainer}>
                     <BurgerLogo />       
                 </div>
-                <nav>
+                <div onClick={closeFunc} className={classes.BurgerMenuButton}>
+                    <div className={classes._item} />
+                    <div className={classes._item} />
+                    <div className={classes._item} />
+                </div>
+                <nav className={classes.MainToolNavigation}>
                     <ul className={classes.NavigationList}>
                         { links.map((link) => {
                             return (

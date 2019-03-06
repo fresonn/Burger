@@ -46,6 +46,10 @@ $tablet-width: 768px;
         font-weight: 700;
         color: #fff;
         font-size: 18px;
+        transition: all 250ms ease-in;
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 }
 
@@ -57,11 +61,54 @@ $tablet-width: 768px;
     align-items: center;
 }
 
+$line-width: 38px;
+
+.BurgerMenuButton {
+    display: flex;
+    flex-direction: column;
+    ._item {
+        background:#FCFCFC;
+        width: $line-width;
+        height: 6px;
+        border: 1px solid;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        &:nth-child(2) {
+            margin: 4px 0;
+        }
+    }
+}
+
+.BurgerMenuButton:hover {
+    cursor: pointer;
+}
+
+.BurgerMenuButton:active,
+.BurgerMenuButton:focus {
+    div {
+        background-color: #aeaeae;
+    }
+}
+
+.BurgerMenuButton {
+    display: none;
+}
 
 @media(max-width: $tablet-width) {
     .ToolBar {
-        height: 60px;
+        .ToolWrapper {
+            justify-content: flex-end;
+            padding: 10px 25px;
+        }
     }
+
+    .BurgerMenuButton {
+        display: block;
+    }
+
+    .MainToolNavigation {
+        display: none;
+    }
+
     .NavigationList {
         @include hide();
     }

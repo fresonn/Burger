@@ -7,9 +7,7 @@ import ToolBar from '../../Components/Navigation/ToolBar/ToolBar'
 import Drawer from '../../Components/Navigation/Drawer/Drawer'
 
 const Layout = (props) => {
-
-    const [ drawer, changeDrawer ] = useState(true)
-
+    const [ drawer, changeDrawer ] = useState(false)
 
     const drawerCloseHandler = () => {
         changeDrawer(!drawer)
@@ -17,7 +15,7 @@ const Layout = (props) => {
 
     return (
         <>
-        <ToolBar />
+        <ToolBar isOpen={drawer} closeFunc={drawerCloseHandler} />
         <Drawer isOpen={drawer} closeFunc={drawerCloseHandler} />        
         <main className={classes.PageMainContent}>
             { props.children }

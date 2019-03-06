@@ -40,9 +40,9 @@ $tablet-width: 768px;
     max-width: 400px;
     padding: 15px 10px 20px;
     box-sizing: border-box;
+    transform: translateX(400px);
     background: #fff;
-    transform: translateX(0px);
-    transition: transform .22s ease-in;
+    transition: transform 220ms ease-in;
     z-index: 700;
     img {
         width: 75px;
@@ -53,8 +53,12 @@ $tablet-width: 768px;
     }
 }
 
-.Drawer.Close {
-    transform: translateX(500px);
+.Drawer.Hide {
+    @include hide();
+}
+
+.Drawer.Open {
+    transform: translateX(0)
 }
 
 
@@ -62,4 +66,5 @@ $tablet-width: 768px;
     .Drawer {
         @include hide();
     }
+
 }
