@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './NavigationList.scss'
 
+
 import NavigationItem from './NavItem/NavigationItem'
 
 const NavigationList = (props) => {

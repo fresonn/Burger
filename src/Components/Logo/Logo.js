@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Logo.scss'
 
 
-import LogoBurger from '../../assets/images/burger-logo.png.png'
+import LogoBurger from '../../assets/images/burger-logo.png.svg'
 
 const Logo = (props) => {
     return (

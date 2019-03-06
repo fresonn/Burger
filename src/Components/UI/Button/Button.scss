@@ -42,3 +42,24 @@
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
     }
 }
+
+
+
+
+
+// DRAWER
+
+.DrawerCloseButton {
+    // position: absolute;
+    display: block;
+    border: none;
+    background-color: #8F5F1D;
+    margin: 0 8px 0 auto;
+    font-size: 26px;
+    color: #fff;
+    padding: 0 11px;
+    &:active {
+        outline: 4px;
+        background-color: rgb(94, 63, 19);
+    }
+}

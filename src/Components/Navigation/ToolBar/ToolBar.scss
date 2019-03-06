@@ -36,9 +36,10 @@ $tablet-width: 768px;
 
 .ToolWrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    div {
+    padding: 0 50px;
+    .ToolImgContainer {
         cursor: pointer;
         text-transform: uppercase;
         padding: 15px 8px;
@@ -58,7 +59,14 @@ $tablet-width: 768px;
 
 
 @media(max-width: $tablet-width) {
+    .ToolBar {
+        height: 60px;
+    }
     .NavigationList {
         @include hide();
+    }
+
+    .ToolImgContainer {
+        display: none;
     }
 }

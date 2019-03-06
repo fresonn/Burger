@@ -4,8 +4,6 @@ import classes from './OrderSummary.scss'
 
 import Button from '../../UI/Button/Button'
 
-
-
 const OrderSummary = (props) => {
     const {ingredients, closeModal, continueOrder, totalPrice} = props
     console.log(totalPrice)

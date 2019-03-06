@@ -17,6 +17,19 @@ $tablet-width: 768px;
     overflow: hidden;
 }
 
+.BackdropDrawerWrappeDrawer {
+    position: relative;
+}
+
+.DrawerWrapper {
+    ul > li {
+        text-align: center;
+        margin: 14px 0;
+        a {
+            font-size: 21px;
+        }
+    }
+}
 
 .Drawer {
     position: fixed;
@@ -25,18 +38,28 @@ $tablet-width: 768px;
     bottom: 0;
     width: 60%;
     max-width: 400px;
-    padding: 20px 10px;
+    padding: 15px 10px 20px;
     box-sizing: border-box;
     background: #fff;
     transform: translateX(0px);
     transition: transform .22s ease-in;
     z-index: 700;
+    img {
+        width: 75px;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 15px;
+        margin-top: 20px;
+    }
+}
+
+.Drawer.Close {
+    transform: translateX(500px);
 }
 
 
 @media(min-width: $tablet-width) {
     .Drawer {
         @include hide();
-        
     }
 }

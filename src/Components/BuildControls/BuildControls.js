@@ -1,8 +1,8 @@
 import React from 'react'
 import classes from './BuildControls.scss'
 
-import Control from './Control/Control'
 
+import Control from './Control/Control'
 
 const controls = [
     { label: 'Salad', type: 'salad' },

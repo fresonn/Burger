@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './Button.scss'
 
+
 const Button = (props) => {
 
     const {classFor, clickFunc} = props

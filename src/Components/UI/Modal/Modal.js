@@ -16,7 +16,7 @@ const Modal = props => {
 
     return (
         <>
-        <Backdrop showModal={showModal} closeModal={closeModal} />
+        <Backdrop classFor={'ModalBackdrop'} show={showModal} close={closeModal} />
         <div className={cls.join(' ')}>
             { props.children }
         </div>
