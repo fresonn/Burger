@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import classes from './BurgerBuilder.scss'
 
+import axios from '../../axios_config/axios_config'
 
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/BuildControls/BuildControls'
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
+import OrderLoader from '../../Components/UI/Loaders/LogoLoader/LogoLoader'
 
 import Modal from '../../Components/UI/Modal/Modal'
 import Wrapper from '../../Hoc/Wrapper/Wrapper'
+import withError from '../../Hoc/withError/withError'
+
 
 const BurgerBuilder = class extends Component {
     state = {
         ingredientPrice: {
-            cheese: 0.8,
-            meat: 1.3,
+            cheese: 1.2,
+            meat: 1.7,
             salad: 0.5,
-            bacon: 0.8
+            bacon: 1.4
         },
         ingredients: {
             cheese: 0,
@@ -25,8 +29,11 @@ const BurgerBuilder = class extends Component {
         },
         totalPrice: 0,
         isOrdered: false,
-        purechasing: false, //
+        purechasing: false,
+        loading: false,
+        isError: false
     }
+
 
     updateOrder = (ingredients) => {
         const totalSumm = Object.values(ingredients)
@@ -54,6 +61,7 @@ const BurgerBuilder = class extends Component {
         this.updateOrder(ingredients)
     }
 
+
     removeIngredientHandler = type => {
 
         const ingredientPrice = this.state.ingredientPrice[type]
@@ -76,20 +84,42 @@ const BurgerBuilder = class extends Component {
         this.updateOrder(ingredients)
     }
 
+
     purechasingHandler = () => {
         this.setState({
             purechasing: !this.state.purechasing
         })
     }
 
-    continueOrderHandler = () => {
-        console.log(true)
+
+    continueOrderHandler = async () => {
+        this.setState({
+            loading: true
+        })
+        const userOrder = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice
+        }
+        await axios.post('/orders', userOrder) ////
+            .then(resp => {
+                this.setState({
+                    loading: false,
+                    purechasing: false
+                })
+            })
+            .catch(err => {
+                console.log('EEEERRRROORRR')
+                this.setState({
+                    loading: false,
+                    purechasing: false,
+                    isError: true
+                })
+            })
     }
 
     render() {
         console.log(this.state)
-
-        const modal = (
+        let modal = (
             <Modal showModal={this.state.purechasing}
                    closeModal={this.purechasingHandler}
                 >
@@ -101,10 +131,22 @@ const BurgerBuilder = class extends Component {
                 />
             </Modal>
         )
+        
+        if (this.state.loading) {
+            modal = (
+                <Modal showModal={this.state.purechasing}
+                    closeModal={this.purechasingHandler}
+                    hideForLoader={this.state.loading}
+                    >
+                    <OrderLoader />
+                </Modal>
+            )
+        } 
+        
         return (
             <>
             <Wrapper>
-                { this.state.purechasing ? modal : null }
+                { this.state.purechasing ? modal : null  }
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     addIngredFunc={this.newIngredientHandler}
@@ -120,4 +162,5 @@ const BurgerBuilder = class extends Component {
     }
 }
 
-export default BurgerBuilder
+// export default BurgerBuilder
+export default withError(BurgerBuilder, axios)

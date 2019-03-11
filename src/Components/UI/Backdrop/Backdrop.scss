@@ -2,6 +2,7 @@ $backdrop-color: rgba(0, 0, 0, 0.5);
 
 .ModalBackdrop {
     position: absolute;
+    box-sizing: border-box;
     z-index: 300;
     width: 100%;
     height: 100%;

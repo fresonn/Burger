@@ -6,7 +6,7 @@
     width: 70%;
     border: 1px solid #000;
     box-sizing: border-box;
-    top: 35%;
+    top: 30%;
     transition: all 300ms ease-out;
     left: 0; 
     right: 0; 
@@ -21,7 +21,7 @@
         opacity: 0;
     }
     to {
-        top: 35%;
+        top: 30%;
         opacity: 1;
     }
 }
@@ -30,10 +30,11 @@
     animation: forModal 300ms ease-out;
 }
 
+.Modal.Hide {
+    display: none;
+}
 
-// @media (min-width: 600px) {
-//     .Modal {
-//         width: 500px;
-//         left: calc(50% - 200px)
-//     }
-// }
+.Modal.HideModalForLoader {
+    background-color: transparent;
+    border: none;
+}

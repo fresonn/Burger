@@ -5,13 +5,18 @@ import classes from './Modal.scss'
 import Backdrop from '../Backdrop/Backdrop'
 
 const Modal = props => {
-    const {showModal, closeModal} = props
-    const cls = [
-        classes.Modal
-    ]
+    const {showModal, closeModal, hideForLoader} = props
+    
+    const cls = [ classes.Modal ]
 
     if (showModal) {
         cls.push(classes.ModalAnimation)
+    } else {
+        cls.push(classes.Hide)
+    }
+
+    if (hideForLoader) {
+        cls.push(classes.HideModalForLoader)
     }
 
     return (

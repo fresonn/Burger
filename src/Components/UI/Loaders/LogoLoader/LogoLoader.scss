@@ -1,0 +1,16 @@
+.LogoLoader {
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 78px;
+    animation: burger-rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+
+@keyframes burger-rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1.15);
+    }
+}

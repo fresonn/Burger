@@ -1,0 +1,18 @@
+.ErrorBox {
+    padding: 20px 5px;
+    background-color: rgb(216, 210, 21);
+    .ErrorTitle {
+        text-align: center;
+        font-size: 20px;
+        margin: 5px 0;
+    }
+    .ErrorDescription {
+        text-align: center;
+    }
+    img {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        width: 80px;
+    }
+}
