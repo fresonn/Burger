@@ -43,10 +43,6 @@
     }
 }
 
-
-
-
-
 // DRAWER
 
 .DrawerCloseButton {
@@ -61,5 +57,29 @@
     &:active {
         outline: 4px;
         background-color: rgb(94, 63, 19);
+    }
+}
+
+.ReconnectButton {
+    outline: none;
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid #dc5501;
+    background-color: #FFBC34;
+    transition: all 150ms ease-in;
+
+    i {
+        font-size: 1.8rem;
+        transition: all 150ms ease-in;
+    }
+    &:hover {
+        i {
+            transform: rotate(120deg);
+        }
+    }
+    &:active {
+        transform: rotate(120deg)
     }
 }

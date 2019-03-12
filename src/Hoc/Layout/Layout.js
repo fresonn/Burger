@@ -20,6 +20,8 @@ const Layout = (props) => {
         <main className={classes.PageMainContent}>
             { props.children }
         </main>
+        {/* test */}
+        <footer style={{backgroundColor: '#3366ff',height: '600px'}}></footer>
         </>
     )
 }

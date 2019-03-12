@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import classes from './BurgerBuilder.scss'
+// import classes from './BurgerBuilder.scss'
 
 import axios from '../../axios_config/axios_config'
 
@@ -7,19 +7,19 @@ import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/BuildControls/BuildControls'
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
 import OrderLoader from '../../Components/UI/Loaders/LogoLoader/LogoLoader'
+import FetchError from '../../Components/UI/FetchError/FetchError'
 
 import Modal from '../../Components/UI/Modal/Modal'
-import Wrapper from '../../Hoc/Wrapper/Wrapper'
 import withError from '../../Hoc/withError/withError'
 
 
 const BurgerBuilder = class extends Component {
     state = {
         ingredientPrice: {
-            cheese: 1.2,
-            meat: 1.7,
-            salad: 0.5,
-            bacon: 1.4
+            cheese: 0,
+            meat: 0,
+            salad: 0,
+            bacon: 0
         },
         ingredients: {
             cheese: 0,
@@ -31,9 +31,40 @@ const BurgerBuilder = class extends Component {
         isOrdered: false,
         purechasing: false,
         loading: false,
-        isError: false
+        prefetchDataError: false
     }
 
+
+    componentDidMount() {
+        axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json')
+            .then(resp => {
+                console.log(resp)
+                this.setState({
+                    ingredientPrice: resp.data
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    prefetchDataError: true
+                })
+            })
+    }
+
+    retryFetchDataHandler = () => {
+        axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json')
+            .then(resp => {
+                console.log(resp)
+                this.setState({
+                    ingredientPrice: resp.data,
+                    prefetchDataError: false
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    prefetchDataError: true
+                })
+            })
+    }
 
     updateOrder = (ingredients) => {
         const totalSumm = Object.values(ingredients)
@@ -98,9 +129,10 @@ const BurgerBuilder = class extends Component {
         })
         const userOrder = {
             ingredients: this.state.ingredients,
-            price: this.state.totalPrice
+            price: this.state.totalPrice,
+            date: new Date().toLocaleTimeString()
         }
-        await axios.post('/orders', userOrder) ////
+        await axios.post('/orders.json', userOrder) ////
             .then(resp => {
                 this.setState({
                     loading: false,
@@ -108,11 +140,9 @@ const BurgerBuilder = class extends Component {
                 })
             })
             .catch(err => {
-                console.log('EEEERRRROORRR')
                 this.setState({
                     loading: false,
                     purechasing: false,
-                    isError: true
                 })
             })
     }
@@ -143,24 +173,27 @@ const BurgerBuilder = class extends Component {
             )
         } 
         
-        return (
+        const controlBurger = (
             <>
-            <Wrapper>
-                { this.state.purechasing ? modal : null  }
-                <Burger ingredients={this.state.ingredients} />
+            { this.state.purechasing ? modal : null  }
+                <Burger  ingredients={this.state.ingredients} />
                 <BuildControls
                     addIngredFunc={this.newIngredientHandler}
                     deleteInredFunc={this.removeIngredientHandler}
                     totalPrice={this.state.totalPrice}
-                    isOrdered={this.state.isOrdered}
+                    isOrdered={this.state.isOrdered && this.state.totalPrice > 0}
                     purchasingStart={this.purechasingHandler}
                 />
-            </Wrapper>
-            <footer className={classes.Test}></footer>
+            </>
+        )
+
+        return (
+            <>
+                {!this.state.prefetchDataError ? controlBurger : <FetchError retryFunc={this.retryFetchDataHandler}/>}
             </>
         )
     }
 }
 
-// export default BurgerBuilder
+
 export default withError(BurgerBuilder, axios)

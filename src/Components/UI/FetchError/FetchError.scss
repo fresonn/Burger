@@ -1,0 +1,15 @@
+.FetchErrorContainer {
+    height: 640px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    .Title {
+        margin: 10px 0;
+        text-align: center;
+    }
+}
+
+.FetchError {
+    width: 230px;
+}

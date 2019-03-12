@@ -10,10 +10,25 @@ import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 
 
 const App = class extends Component {
+
+    // state = {
+    //     show: true
+    // }
+
+    // componentDidMount = () => {
+    //     setTimeout(() => {
+    //         this.setState({
+    //             show: false
+    //         })
+    //     }, 5000)
+    // }
+    
+
     render() {
         return (
             <Layout>
                 <BurgerBuilder />
+                {/* { this.state.show ? <BurgerBuilder /> : null} */}
             </Layout>
         )
     }
