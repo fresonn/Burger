@@ -4,20 +4,11 @@ import classes from './ToolBar.scss'
 
 import BurgerLogo from '../../Logo/Logo'
 import NavigationItem from '../NavigationList/NavItem/NavigationItem'
+import Button from '../../UI/Button/Button'
 
 const ToolBar = (props) => {
-
     const {closeFunc} = props
-    // const {isOpen, closeFunc} = props
-
-    // const attachedClasses = [
-    //     classes.BurgerMenuButton
-    // ]
-
-    // if (isOpen) {
-    //     attachedClasses.push(classes.Close)
-    // }
-
+    
     const links = [
         { title: 'Burger Builder', address: '/' },
         { title: 'Checkout', address: '/' },
@@ -30,11 +21,10 @@ const ToolBar = (props) => {
                 <div className={classes.ToolImgContainer}>
                     <BurgerLogo />       
                 </div>
-                <div onClick={closeFunc} className={classes.BurgerMenuButton}>
-                    <div className={classes._item} />
-                    <div className={classes._item} />
-                    <div className={classes._item} />
-                </div>
+                <h2 className={classes.ToolBarTitle}>Burger</h2>
+                <Button clickFunc={closeFunc} classFor={'BurgerMenuButton'}>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </Button>
                 <nav className={classes.MainToolNavigation}>
                     <ul className={classes.NavigationList}>
                         { links.map((link) => {

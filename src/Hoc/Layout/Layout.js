@@ -21,7 +21,7 @@ const Layout = (props) => {
             { props.children }
         </main>
         {/* test */}
-        <footer style={{backgroundColor: '#3366ff',height: '600px'}}></footer>
+        {/* <footer style={{backgroundColor: '#3366ff',height: '600px'}}></footer> */}
         </>
     )
 }

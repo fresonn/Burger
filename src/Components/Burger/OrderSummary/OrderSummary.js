@@ -25,7 +25,9 @@ const OrderSummary = (props) => {
                 { ingredientsSummary }
             </ul>
             <p><strong>The amount of your order: </strong>{totalPrice}$</p>
-            <Button classFor={'CloseButton'} clickFunc={closeModal}>✖</Button>
+            <Button classFor={'CloseButton'} clickFunc={closeModal}>
+                <i className="fa fa-times" aria-hidden="true"></i>
+            </Button>
             <Button classFor={'ContinueButton'} clickFunc={continueOrder}>continue</Button>
         </div>
     )

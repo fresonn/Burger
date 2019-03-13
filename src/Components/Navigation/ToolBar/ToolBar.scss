@@ -1,4 +1,5 @@
 $tablet-width: 768px;
+$line-width: 38px;
 
 
 @mixin forList {
@@ -61,48 +62,28 @@ $tablet-width: 768px;
     align-items: center;
 }
 
-$line-width: 38px;
 
-.BurgerMenuButton {
-    display: flex;
-    flex-direction: column;
-    ._item {
-        background:#FCFCFC;
-        width: $line-width;
-        height: 6px;
-        border: 1px solid;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        &:nth-child(2) {
-            margin: 4px 0;
-        }
-    }
-}
-
-.BurgerMenuButton:hover {
-    cursor: pointer;
-}
-
-.BurgerMenuButton:active,
-.BurgerMenuButton:focus {
-    div {
-        background-color: #aeaeae;
-    }
-}
-
-.BurgerMenuButton {
+.ToolBarTitle {
     display: none;
+    color: #e0dfdc;
+    font-size: 36px;
+    padding-bottom: 11px;
+    margin: 0;
+    letter-spacing: 2px;
+    color: white; 
+    text-shadow: 0px 2px #000,
+                 0px 3px #000,
+                 0px 4px #000,
+                 0px 5px #000,
+                 0px 6px #000;
 }
+
 
 @media(max-width: $tablet-width) {
     .ToolBar {
         .ToolWrapper {
-            justify-content: flex-end;
-            padding: 10px 25px;
+            padding: 5px 25px;
         }
-    }
-
-    .BurgerMenuButton {
-        display: block;
     }
 
     .MainToolNavigation {
@@ -115,5 +96,9 @@ $line-width: 38px;
 
     .ToolImgContainer {
         display: none;
+    }
+
+    .ToolBarTitle {
+        display: block;
     }
 }

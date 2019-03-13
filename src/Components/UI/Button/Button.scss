@@ -1,10 +1,14 @@
 //  Modal window about order information 
+
+$tablet-width: 768px;
+
+
 .CloseButton {
     position: absolute;
     right: 10px;
     top: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
     outline: none;
     background: none;
     transition: transform 140ms ease-in;
@@ -46,19 +50,40 @@
 // DRAWER
 
 .DrawerCloseButton {
-    // position: absolute;
+    cursor: pointer;
     display: block;
     border: none;
-    background-color: #8F5F1D;
+    background: none;
     margin: 0 8px 0 auto;
-    font-size: 26px;
-    color: #fff;
+    font-size: 28px;
+    color: #000;
     padding: 0 11px;
     &:active {
-        outline: 4px;
-        background-color: rgb(94, 63, 19);
+        color: #FFBC34;
     }
 }
+
+
+.BurgerMenuButton {
+    display: none;
+    outline: none;
+    cursor: pointer;
+    color: #FCFCFC;
+    background: none;
+    font-size: 48px;
+    padding: 0;
+    border: none;
+    &:hover {
+        color: rgb(230, 230, 230);
+    }
+    &:active {
+        color: rgb(39, 228, 10);
+    }
+
+
+}
+
+
 
 .ReconnectButton {
     outline: none;
@@ -81,5 +106,13 @@
     }
     &:active {
         transform: rotate(120deg)
+    }
+}
+
+
+
+@media(max-width: $tablet-width) {
+    .BurgerMenuButton {
+        display: block;
     }
 }
