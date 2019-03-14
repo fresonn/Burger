@@ -23,7 +23,7 @@ const ToolBar = (props) => {
                 </div>
                 <h2 className={classes.ToolBarTitle}>Burger</h2>
                 <Button clickFunc={closeFunc} classFor={'BurgerMenuButton'}>
-                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    <i className="fa fa-bars" aria-hidden="true"></i>
                 </Button>
                 <nav className={classes.MainToolNavigation}>
                     <ul className={classes.NavigationList}>
