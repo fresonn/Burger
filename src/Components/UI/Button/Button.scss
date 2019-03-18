@@ -37,7 +37,7 @@ $tablet-width: 768px;
     box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
     &:hover {
         cursor: pointer;
-        color: rgb(174, 255, 94);
+        color: rgb(254, 254, 15);
         background-color: #ff9d41;
 
     };
@@ -74,10 +74,10 @@ $tablet-width: 768px;
     padding: 0;
     border: none;
     &:hover {
-        color: rgb(230, 230, 230);
+        color: rgb(235, 235, 235);
     }
     &:active {
-        color: rgb(39, 228, 10);
+        color: #FFBC34;
     }
 
 
@@ -109,6 +109,44 @@ $tablet-width: 768px;
     }
 }
 
+$order_ok: rgb(89, 227, 15);
+$order_cancel: rgb(222, 51, 51);
+$lighting_percent: 9%;
+
+@mixin CheckoutOrder {
+    cursor: pointer;
+    font: inherit;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    outline: none;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.CheckoutOrderOk {
+    @include CheckoutOrder();
+    color: $order_ok;
+    &:hover {
+        color: lighten($order_ok, 4%);
+    }
+}
+
+.CheckoutOrderCancel {
+    @include CheckoutOrder();
+    color: $order_cancel;
+    &:hover {
+        color: lighten($order_cancel, $lighting_percent);
+    }
+}
+
+
+// FROM
+
+.FormOrderButton {
+    
+}
 
 
 @media(max-width: $tablet-width) {

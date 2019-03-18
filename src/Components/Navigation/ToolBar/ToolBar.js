@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './ToolBar.scss'
-
+import { withRouter } from 'react-router-dom'
 
 import BurgerLogo from '../../Logo/Logo'
 import NavigationItem from '../NavigationList/NavItem/NavigationItem'
@@ -11,17 +11,20 @@ const ToolBar = (props) => {
     
     const links = [
         { title: 'Burger Builder', address: '/' },
-        { title: 'Checkout', address: '/' },
-        { title: 'Menu', address: '/' },
+        { title: 'Orders', address: '/' }
     ]
+
+    const onRootPage = () => {
+        props.history.replace('/')
+    }
 
     return (
         <header className={classes.ToolBar}>
             <div className={classes.ToolWrapper}>
-                <div className={classes.ToolImgContainer}>
+                <div onClick={onRootPage} className={classes.ToolImgContainer}>
                     <BurgerLogo />       
                 </div>
-                <h2 className={classes.ToolBarTitle}>Burger</h2>
+                <h2 onClick={onRootPage} className={classes.ToolBarTitle}>Burger</h2>
                 <Button clickFunc={closeFunc} classFor={'BurgerMenuButton'}>
                     <i className="fa fa-bars" aria-hidden="true"></i>
                 </Button>
@@ -43,4 +46,4 @@ const ToolBar = (props) => {
     )
 }
 
-export default ToolBar
+export default withRouter(ToolBar)

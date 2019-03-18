@@ -1,10 +1,17 @@
-$order-backg: blanchedalmond;
-
+$shadow-text: 1px 1px 1px rgb(154, 136, 136);
 
 .OrderSummary {
     padding: 1px 10px;
-    background-color: $order-backg;
+    background: url('../../../assets/Patterns/light-pattern.jpg');
     position: relative;
+    .OrderText {
+        strong {
+            font-weight: normal;
+        }
+    }
+    .ListOrder {
+        text-shadow: $shadow-text;
+    }
     .firstPar {
         font-size: 18px;
         margin-bottom: 5px;
@@ -13,4 +20,5 @@ $order-backg: blanchedalmond;
 
 .OrderTitle {
     text-align: center;
+    text-shadow: $shadow-text;
 }

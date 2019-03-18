@@ -1,0 +1,54 @@
+$tablet-width: 768px;
+
+
+.MainOrderForm {
+    background: url('../../assets/Patterns/light-pattern.jpg');
+    width: 100%;
+    padding: 1px;
+    padding-top: 30px;
+    .Title {
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.823);
+    }
+    .SubTitle {
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.823);
+    }
+    input {
+        box-sizing: border-box;
+        background: transparent;
+        border: none;
+        outline: none;
+        font: inherit;
+        border-bottom: 2px solid #AB3939;
+        padding: 10px;
+        padding-left: 0;
+
+    }
+}
+
+.InputContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+}
+
+.ButtonContainer {
+    // width: 255px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    justify-content: center;
+}
+
+
+@media (min-width: $tablet-width) {
+    .MainOrderForm {
+        padding-top: 60px;
+    }
+
+    .InputContainer {
+        max-width: 445px;
+        margin: 0 auto;
+    }
+}

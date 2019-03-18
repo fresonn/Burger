@@ -41,7 +41,7 @@ $tablet-width: 768px;
     padding: 15px 10px 20px;
     box-sizing: border-box;
     transform: translateX(400px);
-    background: #fff;
+    background: url('../../../assets/Patterns//light-pattern.jpg') repeat;
     transition: transform 220ms ease-in;
     z-index: 700;
     img {

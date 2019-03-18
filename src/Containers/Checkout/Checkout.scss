@@ -1,0 +1,14 @@
+$tablet-width: 768px;
+
+.CheckoutWrapper {
+    display: block;
+    // width: 100%;
+}
+
+
+@media (min-width: $tablet-width) {
+    .CheckoutWrapper {
+        display: flex;
+        padding-top: 33px;
+    }
+}

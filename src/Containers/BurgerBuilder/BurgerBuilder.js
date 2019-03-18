@@ -124,27 +124,35 @@ const BurgerBuilder = class extends Component {
 
 
     continueOrderHandler = async () => {
-        this.setState({
-            loading: true
+        // this.setState({
+        //     loading: true
+        // })
+        // const userOrder = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     date: new Date().toLocaleTimeString()
+        // }
+        // await axios.post('/orders.json', userOrder) ////
+        //     .then(resp => {
+        //         this.setState({
+        //             loading: false,
+        //             purechasing: false
+        //         })
+        //     })
+        //     .catch(err => {
+        //         this.setState({
+        //             loading: false,
+        //             purechasing: false,
+        //         })
+        //     })
+        const params = Object.entries(this.state.ingredients).map(item => {
+            return (encodeURIComponent(item[0]) + '=' + encodeURIComponent(item[1]))
         })
-        const userOrder = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            date: new Date().toLocaleTimeString()
-        }
-        await axios.post('/orders.json', userOrder) ////
-            .then(resp => {
-                this.setState({
-                    loading: false,
-                    purechasing: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    loading: false,
-                    purechasing: false,
-                })
-            })
+
+        this.props.history.push({
+            pathname: '/checkout-form',
+            search: '?' + params.join('&')
+        })
     }
 
     render() {

@@ -21,10 +21,10 @@ const OrderSummary = (props) => {
         <div className={classes.OrderSummary}>
             <h2 className={classes.OrderTitle}>Your Order</h2>
             <p className={classes.firstPar}>Ingredients of your burger:</p>
-            <ul>
+            <ul className={classes.ListOrder}>
                 { ingredientsSummary }
             </ul>
-            <p><strong>The amount of your order: </strong>{totalPrice}$</p>
+            <p className={classes.OrderText}><strong>The amount of your order: </strong>{totalPrice}$</p>
             <Button classFor={'CloseButton'} clickFunc={closeModal}>
                 <i className="fa fa-times" aria-hidden="true"></i>
             </Button>
