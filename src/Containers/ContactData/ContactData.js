@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classes from './ContactData.scss'
 import { withRouter } from 'react-router-dom'
 
+
 import Button from '../../Components/UI/Button/Button'
 
 const ContactData = class extends Component {
@@ -14,10 +15,6 @@ const ContactData = class extends Component {
         }
     }
 
-    sendOrderHAndler = event => {
-        event.preventDefault()
-        console.log('click')
-    }
 
     cancelOrderHAndler = event => {
         event.preventDefault()
@@ -37,7 +34,7 @@ const ContactData = class extends Component {
                         <input type="tel" name={''} placeholder={'Phone'}/>
                     </div>
                     <div className={classes.ButtonContainer}>
-                        <Button clickFunc={this.sendOrderHAndler}
+                        <Button clickFunc={this.props.sendFunc}
                             classFor={'CheckoutOrderOk'}
                         >order</Button>
                         <Button clickFunc={this.cancelOrderHAndler}

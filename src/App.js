@@ -8,6 +8,7 @@ import Layout from './Hoc/Layout/Layout'
 // Components
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 import Checkout from './Containers/Checkout/Checkout'
+import Orders from './Containers/Orders/Orders'
 
 
 const App = class extends Component {
@@ -18,6 +19,7 @@ const App = class extends Component {
             <Layout>
                 <Switch>
                     <Route exact path={'/'} component={BurgerBuilder} />
+                    <Route path={'/orders'} component={Orders} />
                     <Route path={'/checkout-form'} component={Checkout} />
                 </Switch>
             </Layout>

@@ -1,4 +1,5 @@
 $backdrop-color: rgba(0, 0, 0, 0.5);
+$tablet-width: 768px;
 
 .ModalBackdrop {
     position: absolute;
@@ -18,4 +19,24 @@ $backdrop-color: rgba(0, 0, 0, 0.5);
     bottom: 0;
     left: 0;
     background-color: $backdrop-color;
+}
+
+.OrderFormBackdrop {
+    // Сохраняю блок!
+    position: absolute;
+    width: 100%;
+    z-index: 400;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $backdrop-color;
+}
+
+
+
+@media(min-width: $tablet-width) {
+    .DrawerBackdrop {
+        display: none;
+    }
 }

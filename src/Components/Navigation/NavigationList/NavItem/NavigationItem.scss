@@ -20,8 +20,18 @@ $link-color_ha: #FFD119;
         color: $link-color_ha;
     };
     &:active {
-        border-bottom: 3px solid #fff;
+        border-bottom: 4px solid #fff;
     }
+}
+
+.Active {
+    border-bottom: 4px solid #fff;
+}
+
+.ActiveTwo {
+    border-bottom: 4px solid red;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 

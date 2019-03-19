@@ -3,7 +3,8 @@ $tablet-width: 768px;
 
 .MainOrderForm {
     background: url('../../assets/Patterns/light-pattern.jpg');
-    width: 100%;
+    width: auto;
+    flex-grow: 1;
     padding: 1px;
     padding-top: 30px;
     .Title {
@@ -44,7 +45,7 @@ $tablet-width: 768px;
 
 @media (min-width: $tablet-width) {
     .MainOrderForm {
-        padding-top: 60px;
+        padding-top: 50px;
     }
 
     .InputContainer {

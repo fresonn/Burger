@@ -3,7 +3,7 @@ $tablet-width: 768px;
 
 .CheckoutOrder {
     background-color: #FFD119;
-    width: 100%;
+    flex-grow: 1;
 }
 
 
@@ -14,5 +14,5 @@ $tablet-width: 768px;
 
 
 @media (min-width: $tablet-width) {
-    
+
 }

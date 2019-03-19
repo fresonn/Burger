@@ -1,11 +1,17 @@
+
 $ring-color: #AC3938;
 
 .Ring {
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
     width: auto;
     padding: 40px 0;
-    width: 64px;
-    height: 64px;
+    width: 70px;
+    height: 70px;
+    z-index: 500;
     div {
         box-sizing: border-box;
         display: block;

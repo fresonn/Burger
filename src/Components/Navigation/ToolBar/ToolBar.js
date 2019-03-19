@@ -10,8 +10,8 @@ const ToolBar = (props) => {
     const {closeFunc} = props
     
     const links = [
-        { title: 'Burger Builder', address: '/' },
-        { title: 'Orders', address: '/' }
+        { title: 'Burger Builder', address: '/', exact: true },
+        { title: 'Orders', address: '/orders', exact: false }
     ]
 
     const onRootPage = () => {
@@ -36,6 +36,8 @@ const ToolBar = (props) => {
                                     key={link.title}
                                     linkHref={link.address}
                                     linkText={link.title}
+                                    exact={link.exact}
+                                    currentClass={'Active'}
                                 />
                             )
                         }) }

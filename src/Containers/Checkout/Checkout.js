@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import classes from './Checkout.scss'
+import axios from '../../axios_config/axios_config'
 
-import CheckoutOrder from '../../Components/Order/CheckoutOrder'
+import CheckoutOrder from '../../Components/CheckoutOrder/CheckoutOrder'
 import ContactData from '../ContactData/ContactData'
+
+import Backdrop from '../../Components/UI/Backdrop/Backdrop'
+import OrderLoader from '../../Components/UI/Loaders/LogoLoader/LogoLoader'
 
 const Checkout = props => {
 
@@ -12,6 +16,9 @@ const Checkout = props => {
             salad: 0,
             bacon: 0
         })
+
+    const [loading, changeLoading] = useState(false)
+
 
     useEffect(() => {
         const query = new URLSearchParams(props.location.search)
@@ -23,12 +30,36 @@ const Checkout = props => {
         changeIngredients(newIngredients)
     }, [])
 
+
+
+
+
+    const sendOrderHAndler = event => {
+        event.preventDefault()
+        changeLoading(true)
+        const userOrder = {
+            ingredients: ingredients,
+            // price: this.state.totalPrice,
+            date: new Date().toLocaleTimeString()
+        }
+        axios.post('/orders.json', userOrder) ////
+            .then(resp => {
+                changeLoading(false)
+                props.history.replace('/orders')
+            })
+            .catch(err => {
+                changeLoading(false)
+            })
+    }
+
     return (
         <div className={classes.CheckoutWrapper}>
+            <Backdrop classFor={'OrderFormBackdrop'} show={loading} />
+            { loading ? <OrderLoader /> : null }
             <CheckoutOrder
                 ingredients={ingredients}
             />
-            <ContactData />
+            <ContactData sendFunc={sendOrderHAndler}/>
         </div>
     )
 }

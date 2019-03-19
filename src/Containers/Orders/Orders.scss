@@ -1,0 +1,28 @@
+$tablet-width: 768px;
+
+.Orders {
+    position: relative;
+    height: 528px;
+    overflow-y: scroll;
+    overflow: auto;
+    background: url('../../assets/Patterns/light-pattern.jpg');
+    &::-webkit-scrollbar{
+        width: 20px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #AB3939; 
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #FFCD00;
+        border-radius: 10px;  
+    }
+}
+
+
+@media (min-width: $tablet-width) {
+    .Orders {
+        &::-webkit-scrollbar{
+            display: none;
+        }
+    }
+}

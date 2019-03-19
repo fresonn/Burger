@@ -7,8 +7,8 @@ import NavigationItem from './NavItem/NavigationItem'
 const NavigationList = (props) => {
 
     const links = [
-        { title: 'Burger Builder', address: '/' },
-        { title: 'Checkout', address: '/' },
+        { title: 'Burger Builder', address: '/', exact: true },
+        { title: 'Orders', address: '/orders', exact: false},
     ]
 
     return (
@@ -19,6 +19,8 @@ const NavigationList = (props) => {
                         key={link.title}
                         linkHref={link.address}
                         linkText={link.title}
+                        exact={link.exact}
+                        currentClass={'ActiveTwo'}
                     />
                 )
             }) }
