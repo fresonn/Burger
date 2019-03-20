@@ -14,15 +14,15 @@ const Layout = (props) => {
     }   
 
     return (
-        <>
+        <div className={classes.PageWrapper}>
         <ToolBar isOpen={drawer} closeFunc={drawerCloseHandler} />
         <Drawer isOpen={drawer} closeFunc={drawerCloseHandler} />        
-        <main className={classes.PageMainContent}>
+        <main>
             { props.children }
         </main>
         {/* test */}
-        <footer style={{backgroundColor: 'red',height: '600px'}}></footer>
-        </>
+        <footer style={{backgroundColor: '#fff',height: '600px'}}></footer>
+        </div>
     )
 }
 

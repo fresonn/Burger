@@ -34,12 +34,13 @@ const Checkout = props => {
 
 
 
-    const sendOrderHAndler = event => {
-        event.preventDefault()
+    const sendOrderHAndler = userInfo => {
         changeLoading(true)
+        console.log(userInfo)
         const userOrder = {
             ingredients: ingredients,
             // price: this.state.totalPrice,
+            data: userInfo,
             date: new Date().toLocaleTimeString()
         }
         axios.post('/orders.json', userOrder) ////
@@ -53,13 +54,15 @@ const Checkout = props => {
     }
 
     return (
-        <div className={classes.CheckoutWrapper}>
+        <div className={classes.MainBackground}>
+            <div className={classes.CheckoutWrapper}>
             <Backdrop classFor={'OrderFormBackdrop'} show={loading} />
             { loading ? <OrderLoader /> : null }
             <CheckoutOrder
                 ingredients={ingredients}
             />
             <ContactData sendFunc={sendOrderHAndler}/>
+        </div>
         </div>
     )
 }

@@ -9,17 +9,17 @@ $ring-color: #AC3938;
     
     width: auto;
     padding: 40px 0;
-    width: 70px;
+    width: 50px;
     height: 70px;
     z-index: 500;
     div {
         box-sizing: border-box;
         display: block;
         position: absolute;
-        width: 71px;
-        height: 71px;
+        width: 61px;
+        height: 61px;
         margin: 6px;
-        border: 10px solid $ring-color;
+        border: 8px solid $ring-color;
         border-radius: 50%;
         animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         border-color: $ring-color transparent transparent transparent;

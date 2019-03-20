@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import classes from './BurgerBuilder.scss'
 
 import axios from '../../axios_config/axios_config'
+import _axios from 'axios'
 
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/BuildControls/BuildControls'
@@ -14,6 +15,7 @@ import withError from '../../Hoc/withError/withError'
 
 
 const BurgerBuilder = class extends Component {
+    isMount = false
     state = {
         ingredientPrice: {
             cheese: 0,
@@ -31,24 +33,39 @@ const BurgerBuilder = class extends Component {
         isOrdered: false,
         purechasing: false,
         loading: false,
-        prefetchDataError: false
+        prefetchDataError: false,
     }
 
 
     componentDidMount() {
-        axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json')
+        this.CancelTokenSource = _axios.CancelToken.source()
+        this.isMount = true
+    
+        axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json', {
+                cancelToken: this.CancelTokenSource.token
+            })
             .then(resp => {
                 console.log(resp)
-                this.setState({
-                    ingredientPrice: resp.data
-                })
+                if (this.isMount) {
+                    this.setState({
+                        ingredientPrice: resp.data
+                    })
+                }
             })
             .catch(err => {
-                this.setState({
-                    prefetchDataError: true
-                })
+                if (this.isMount) {
+                    this.setState({
+                        prefetchDataError: true
+                    })
+                }
             })
     }
+
+    componentWillUnmount() {
+        this.isMount = false
+        this.CancelTokenSource && this.CancelTokenSource.cancel()
+    }
+    
 
     retryFetchDataHandler = () => {
         axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json')
@@ -135,7 +152,7 @@ const BurgerBuilder = class extends Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log('rende')
         let modal = (
             <Modal showModal={this.state.purechasing}
                    closeModal={this.purechasingHandler}
@@ -184,3 +201,4 @@ const BurgerBuilder = class extends Component {
 
 
 export default withError(BurgerBuilder, axios)
+// export default BurgerBuilder

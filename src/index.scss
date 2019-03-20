@@ -1,9 +1,12 @@
+$tablet-width: 768px;
+$main-background: #efa335;
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Exo 2', Arial, Helvetica, sans-serif;
+    background-color: $main-background;
 }
-
 
 
 @mixin hide {
@@ -20,4 +23,11 @@ body {
     clip-path: inset(100%);
     clip: rect(0 0 0 0);
     overflow: hidden;
+}
+
+
+@media (min-width: $tablet-width) {
+    body {
+        background-image: url('./assets/Patterns/main-pattern.svg');         
+    }
 }

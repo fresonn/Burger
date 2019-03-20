@@ -1,0 +1,44 @@
+$tablet-width: 768px;
+
+
+@mixin hide {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+
+.FormInput {
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    outline: none;
+    font: inherit;
+    border-bottom: 2px solid #AB3939;
+    padding: 10px;
+    padding-left: 0;
+    width: 100%;
+    transition: all 150ms ease-in;
+    &:focus {
+        border-bottom: 4px solid #AB3939;
+    }
+
+}
+
+.LabelHide {
+    @include hide();
+}
+
+.LabelShow {
+    display: inline-block;
+}

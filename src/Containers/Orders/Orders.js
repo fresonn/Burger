@@ -12,38 +12,36 @@ import EmptyContainer from '../../Components/UI/EmptyContainer/EmptyContainer'
 
 
 const Orders = props => {
-
+    // const [mountC, unmountC] = useState(false)
     const [orders, newOrders] = useState([])
     const [loading, changeLoading] = useState(true)
     const [error, changeError] = useState(null)
 
     const getReceivedOrders = () => {
         axios.get('/orders.json')
-            .then(res => {
-                const receivedOrders = []
-                for (const key in res.data) {
-                    receivedOrders.push({
-                        ...res.data[key],
-                        id: key
-                    })
-                }
-                console.log(receivedOrders)
-                changeError(null)
-                changeLoading(false)
-                newOrders(receivedOrders)
-            })
-            .catch(err => {
-                changeLoading(false)
-                changeError(err)
-            })
+        .then(res => {
+            const receivedOrders = []
+            for (const key in res.data) {
+                receivedOrders.push({
+                    ...res.data[key],
+                    id: key
+                })
+            }
+            console.log(receivedOrders)
+            changeError(null)
+            changeLoading(false)
+            newOrders(receivedOrders)
+        })
+        .catch(err => {
+            changeLoading(false)
+            changeError(err)
+        })
     }
 
-    let CancelTokenSource = null
 
     useEffect(() => {
-
-        CancelTokenSource = _axios.CancelToken.source();
-
+        let CancelTokenSource = _axios.CancelToken.source();
+        
         axios.get('/orders.json', {
                 cancelToken: CancelTokenSource.token
             })
@@ -56,7 +54,7 @@ const Orders = props => {
                     })
                 }
                 console.log(receivedOrders)
-                changeError(null)
+                // changeError(null)
                 changeLoading(false)
                 newOrders(receivedOrders)
             })
@@ -65,8 +63,6 @@ const Orders = props => {
                 changeError(err)
             })
         return () => {
-            console.log(CancelTokenSource)
-            CancelTokenSource.cancel()
             CancelTokenSource && CancelTokenSource.cancel()
         }
     }, [])
@@ -80,7 +76,6 @@ const Orders = props => {
              />
         )
     })
-
 
     return (
         <div className={classes.Orders}>
