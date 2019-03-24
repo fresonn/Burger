@@ -5,11 +5,18 @@
     background-color: #fff;
     margin: 10px auto;    
     padding: 10px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .IngredName {
     font-weight: 700;
 }
+
+.IgredItemOrderList{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 .IngredientItem {
     border: 1px solid #aeaeae;

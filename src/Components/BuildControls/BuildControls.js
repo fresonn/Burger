@@ -23,7 +23,7 @@ const BuildControls = props => {
                         <Control
                             key={control.label}
                             label={control.label}
-                            addIngredFunc={() =>props.addIngredFunc(control.type)}
+                            addIngredFunc={() => props.addIngredFunc(control.type)}
                             deleteInredFunc={() => props.deleteInredFunc(control.type)}
                         />
                     )
@@ -37,6 +37,5 @@ const BuildControls = props => {
         </section>
     )
 }
-
 
 export default BuildControls

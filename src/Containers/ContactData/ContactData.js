@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import classes from './ContactData.scss'
 import { withRouter } from 'react-router-dom'
-
+// import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { validate } from './validation/validation'
 
 import Button from '../../Components/UI/Button/Button'
 import Input from '../../Components/UI/Inputs/Input'
@@ -95,7 +97,6 @@ const ContactData = class extends Component {
         }
 
         console.log(this.state.orderForm)
-
         return (
             <div className={classes.MainOrderForm}>
                 <h1 className={classes.Title}>Сonfirm your order</h1>
@@ -103,19 +104,27 @@ const ContactData = class extends Component {
                 <form>
                     <div className={classes.InputContainer}>
                         { formElementsArray.map((input, ind) => {
+                            // console.log(input)
                             return (
-                                <Input
+                                <Field
                                     key={ind}
-                                    inputType={input.config.inputType}
-                                    label={input.config.label}
-                                    placeholder={input.config.elementConfig.placeholder}
-                                    changeFunc={event => this.inputChangeHandler(event, input)}
+                                    component={(props) => (
+                                        <Input
+                                            {...props} 
+                                            inputType={input.config.inputType}
+                                            label={input.config.label}
+                                            placeholder={input.config.elementConfig.placeholder}
+                                            changeFunc={event => this.inputChangeHandler(event, input)}
+                                        />
+                                    )}
+                                    name={input.id}
                                 />
+                                
                             )
-                        }) }
+                        }) }    
                     </div>
                     <div className={classes.ButtonContainer}>
-                        <Button clickFunc={this.sendOrderHandler}
+                        <Button type='submit' clickFunc={this.sendOrderHandler}
                             classFor={'CheckoutOrderOk'}
                         >order</Button>
                         <Button clickFunc={this.cancelOrderHAndler}
@@ -128,4 +137,9 @@ const ContactData = class extends Component {
     }
 }
 
-export default withRouter(ContactData)
+const orderForm = reduxForm({
+    form: 'orderForm',
+    validate
+})(withRouter(ContactData))
+
+export default orderForm

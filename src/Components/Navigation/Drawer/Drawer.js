@@ -24,18 +24,17 @@ const Drawer = (props) => {
     return (
         <>
         <Backdrop show={isOpen} close={closeFunc} classFor={'DrawerBackdrop'}/>
-        <div className={attachedClasses.join(' ')}>
+        <aside className={attachedClasses.join(' ')}>
             <div className={classes.DrawerWrapper}>
                 <Button clickFunc={closeFunc} classFor={'DrawerCloseButton'}>
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </Button>
-                {/* ////////////////////////// */}
                 <Logo />
                 <nav>
-                    <NavigationList />
+                    <NavigationList closeFunc={closeFunc}/>
                 </nav>
             </div>
-        </div>
+        </aside>
         </>
     )
 }

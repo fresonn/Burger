@@ -3,10 +3,11 @@ import classes from './NavigationItem.scss'
 import { NavLink } from 'react-router-dom'
 
 const NavigationItem = (props) => {
-    const { linkText, linkHref, exact, currentClass } = props
+    const { linkText, linkHref, exact, currentClass, closeFunc } = props
     return (
         <li className={classes.NavigationItem}>
-            <NavLink 
+            <NavLink
+                onClick={closeFunc} 
                 className={classes.NavLink} 
                 to={linkHref}
                 exact={exact}

@@ -20,11 +20,14 @@ const Order = props => {
     })
 
     return (
-        <div className={classes.Order}>
-            <p className={classes.IngredName}>Ingredients: {ingredientsOutput}</p>
+        <article className={classes.Order}>
+            <h4 className={classes.IngredName}>Ingredients:</h4>
+            <ul className={classes.IgredItemOrderList}>
+                {ingredientsOutput}
+            </ul>
             <p>Price: <strong>3$</strong></p>
             <p>Date: <strong>{props.date}</strong></p>
-        </div>
+        </article>
     )
 }
 

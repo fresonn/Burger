@@ -2,6 +2,7 @@ $tablet-width: 768px;
 
 
 .MainOrderForm {
+    box-sizing: border-box;
     background: url('../../assets/Patterns/light-pattern.jpg');
     width: auto;
     flex-grow: 1;
@@ -34,7 +35,7 @@ $tablet-width: 768px;
 
 @media (min-width: $tablet-width) {
     .MainOrderForm {
-        padding-top: 50px;
+        padding-top: 10px;
     }
 
     .InputContainer {

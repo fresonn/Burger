@@ -17,6 +17,7 @@ const NavigationList = (props) => {
                 return (
                     <NavigationItem
                         key={link.title}
+                        closeFunc={props.closeFunc}
                         linkHref={link.address}
                         linkText={link.title}
                         exact={link.exact}

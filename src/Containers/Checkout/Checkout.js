@@ -35,23 +35,25 @@ const Checkout = props => {
 
 
     const sendOrderHAndler = userInfo => {
-        changeLoading(true)
+        // changeLoading(true)
         console.log(userInfo)
-        const userOrder = {
-            ingredients: ingredients,
-            // price: this.state.totalPrice,
-            data: userInfo,
-            date: new Date().toLocaleTimeString()
-        }
-        axios.post('/orders.json', userOrder) ////
-            .then(resp => {
-                changeLoading(false)
-                props.history.replace('/orders')
-            })
-            .catch(err => {
-                changeLoading(false)
-            })
+        // const userOrder = {
+        //     ingredients: ingredients,
+        //     // price: this.state.totalPrice,
+        //     data: userInfo,
+        //     date: new Date().toLocaleTimeString()
+        // }
+        // axios.post('/orders.json', userOrder) ////
+        //     .then(resp => {
+        //         changeLoading(false)
+        //         props.history.replace('/orders')
+        //     })
+        //     .catch(err => {
+        //         changeLoading(false)
+        //     })
     }
+
+    console.log('props:', props)
 
     return (
         <div className={classes.MainBackground}>
