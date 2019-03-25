@@ -25,7 +25,7 @@ const Order = props => {
             <ul className={classes.IgredItemOrderList}>
                 {ingredientsOutput}
             </ul>
-            <p>Price: <strong>3$</strong></p>
+            <p>Price: <strong>{props.price}$</strong></p>
             <p>Date: <strong>{props.date}</strong></p>
         </article>
     )

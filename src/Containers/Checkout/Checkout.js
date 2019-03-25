@@ -1,72 +1,71 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import classes from './Checkout.scss'
 import axios from '../../axios_config/axios_config'
+import { connect } from 'react-redux'
 
 import CheckoutOrder from '../../Components/CheckoutOrder/CheckoutOrder'
 import ContactData from '../ContactData/ContactData'
+
+import FetchError from '../../Components/UI/FetchError/FetchError'
 
 import Backdrop from '../../Components/UI/Backdrop/Backdrop'
 import OrderLoader from '../../Components/UI/Loaders/LogoLoader/LogoLoader'
 
 const Checkout = props => {
-
-    const [ingredients, changeIngredients] = useState({
-            cheese: 0,
-            meat: 0,
-            salad: 0,
-            bacon: 0
-        })
-
     const [loading, changeLoading] = useState(false)
-
-
-    useEffect(() => {
-        const query = new URLSearchParams(props.location.search)
-        const newIngredients = {}
-        for (let _option of query.entries()) {
-            newIngredients[_option[0]] = +_option[1]
-        }
-
-        changeIngredients(newIngredients)
-    }, [])
-
-
-
-
+    const [error, changeError] = useState(null)
 
     const sendOrderHAndler = userInfo => {
-        // changeLoading(true)
-        console.log(userInfo)
-        // const userOrder = {
-        //     ingredients: ingredients,
-        //     // price: this.state.totalPrice,
-        //     data: userInfo,
-        //     date: new Date().toLocaleTimeString()
-        // }
-        // axios.post('/orders.json', userOrder) ////
-        //     .then(resp => {
-        //         changeLoading(false)
-        //         props.history.replace('/orders')
-        //     })
-        //     .catch(err => {
-        //         changeLoading(false)
-        //     })
+        changeLoading(true)
+        const userOrder = {
+            ingredients: props.ingredients,
+            price: props.totalPrice,
+            data: userInfo,
+            date: new Date().toLocaleTimeString()
+        }
+        axios.post('/orders.json', userOrder)
+            .then(resp => {
+                changeLoading(false)
+                props.history.replace('/orders')
+            })
+            .catch(err => {
+                changeLoading(false)
+                changeError(err)
+            })
     }
 
-    console.log('props:', props)
-
-    return (
-        <div className={classes.MainBackground}>
+    const CheckoutComp = (
             <div className={classes.CheckoutWrapper}>
             <Backdrop classFor={'OrderFormBackdrop'} show={loading} />
             { loading ? <OrderLoader /> : null }
             <CheckoutOrder
-                ingredients={ingredients}
+                price={props.totalPrice}
+                ingredients={props.ingredients}
             />
             <ContactData sendFunc={sendOrderHAndler}/>
         </div>
+    )
+
+    return (
+        <div className={classes.MainBackground}>
+        { error ? <FetchError showButton={false}>{error.message}</FetchError> : CheckoutComp }
         </div>
     )
 }
 
-export default Checkout
+
+const mapStateToProps = (state) => {
+    return {
+        ingredients: state.builder.ingredients,
+        totalPrice: state.builder.totalPrice
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

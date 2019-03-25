@@ -9,6 +9,7 @@ const CheckoutOrder = props => {
             <div>
                 <Burger ingredients={props.ingredients} />
             </div>
+            <h2 className={classes.FormPrice}>Order price: {props.price}$</h2>
         </div>
     )
 }

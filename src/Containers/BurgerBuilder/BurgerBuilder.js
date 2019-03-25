@@ -55,10 +55,8 @@ const BurgerBuilder = class extends Component {
     }
 
     componentWillUnmount() {
-        console.log('unm')
         this.isMount = false
         this.CancelTokenSource && this.CancelTokenSource.cancel()
-        this.props.onClear()
     }
     
 
@@ -97,14 +95,15 @@ const BurgerBuilder = class extends Component {
 
 
     continueOrderHandler = () => {
-        const params = Object.entries(this.props.ingredients).map(item => {
-            return (encodeURIComponent(item[0]) + '=' + encodeURIComponent(item[1]))
-        })
+        this.props.history.push('/checkout-form')
+        // const params = Object.entries(this.props.ingredients).map(item => {
+        //     return (encodeURIComponent(item[0]) + '=' + encodeURIComponent(item[1]))
+        // })
 
-        this.props.history.push({
-            pathname: '/checkout-form',
-            search: '?' + params.join('&')
-        })
+        // this.props.history.push({
+        //     pathname: '/checkout-form',
+        //     search: '?' + params.join('&')
+        // })
     }
 
     render() {
@@ -166,8 +165,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddIngredient: (type, price) => dispatch({ type: AT.NEW_BURGER_IGREDIENT, payload: {type, price} }),
-        onRemoveIngredient: (type, price) => dispatch({ type: AT.REMOVE_BURGER_INGREDIENT, payload: {type, price} }),
-        onClear: () => dispatch({ type: AT.CLEAR_BEFORE_UNMOUNTING })
+        onRemoveIngredient: (type, price) => dispatch({ type: AT.REMOVE_BURGER_INGREDIENT, payload: {type, price} })
     }
 }
 

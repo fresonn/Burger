@@ -1,65 +1,36 @@
 import React, { Component } from 'react'
 import classes from './ContactData.scss'
 import { withRouter } from 'react-router-dom'
-// import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { validate } from './validation/validation'
-
+import { withFormik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 import Button from '../../Components/UI/Button/Button'
-import Input from '../../Components/UI/Inputs/Input'
 
 const ContactData = class extends Component {
     state = {
-        orderForm: {
-            name: '',
-            email: '',
-            phone: '',
-            address: ''
-        },
         inputs: {
             name: {
                 inputType: 'text',
                 elementConfig: {
-                    label: 'Enter your name',
                     placeholder: 'Name'
-                },
-                validation: {
-                    required: true
-                },
-                valid: false
+                }
             },
             email: {
                 inputType: 'email',
                 elementConfig: {
-                    label: 'Enter your email',
                     placeholder: 'Email'
-                },
-                validation: {
-                    required: true
-                },
-                valid: false
+                }
             },
             phone: {
                 inputType: 'tel',
                 elementConfig: {
-                    label: 'Enter your phone',
                     placeholder: 'Phone'
-                },
-                validation: {
-                    required: true
-                },
-                valid: false
+                }
             },
             address: {
                 inputType: 'text',
                 elementConfig: {
-                    label: 'Enter your address',
                     placeholder: 'Address: street, home, etc.'
-                },
-                validation: {
-                    required: true
-                },
-                valid: false
+                }
             }
         }
     }
@@ -68,78 +39,86 @@ const ContactData = class extends Component {
         event.preventDefault()
         this.props.history.replace('/')
     }
-
-    sendOrderHandler = event => {
-        event.preventDefault()
-        this.props.sendFunc({...this.state.orderForm})
-    }
     
-
-    inputChangeHandler = (event, inputIdent) => {
-        console.log(inputIdent)
-        const orderForm = Object.assign({}, this.state.orderForm)
-        orderForm[inputIdent.id] = event.target.value
-        this.setState({
-            orderForm
-        })
-
-    }
-
     render() {
-
+        const { touched, errors, isSubmitting } = this.props
         const formElementsArray = []
 
         for (const key in this.state.inputs) {
             formElementsArray.push({
-                id: key,
+                name: key,
                 config: this.state.inputs[key]
             })
         }
-
-        console.log(this.state.orderForm)
         return (
             <div className={classes.MainOrderForm}>
                 <h1 className={classes.Title}>Сonfirm your order</h1>
                 <p className={classes.SubTitle}>Please, enter your data!</p>
-                <form>
+                <Form>
                     <div className={classes.InputContainer}>
                         { formElementsArray.map((input, ind) => {
-                            // console.log(input)
+                            const name = input.name
                             return (
+                                <div key={ind}>
                                 <Field
-                                    key={ind}
-                                    component={(props) => (
-                                        <Input
-                                            {...props} 
-                                            inputType={input.config.inputType}
-                                            label={input.config.label}
-                                            placeholder={input.config.elementConfig.placeholder}
-                                            changeFunc={event => this.inputChangeHandler(event, input)}
-                                        />
-                                    )}
-                                    name={input.id}
+                                    className={classes.FormInput}
+                                    name={name} 
+                                    placeholder={input.config.elementConfig.placeholder}
                                 />
-                                
-                            )
+                                { touched[name] && errors[name] && <p className={classes.InputInfo}>{errors[name]}</p> }
+                                </div>
+                            )                                
                         }) }    
                     </div>
                     <div className={classes.ButtonContainer}>
-                        <Button type='submit' clickFunc={this.sendOrderHandler}
-                            classFor={'CheckoutOrderOk'}
-                        >order</Button>
+                        <button disabled={isSubmitting} type='submit' className={classes.CheckoutOrderOk}>order</button>
                         <Button clickFunc={this.cancelOrderHAndler}
                             classFor={'CheckoutOrderCancel'}
                         >cancel</Button>
                     </div>
-                </form>
+                </Form>
             </div>
         )
     }
 }
 
-const orderForm = reduxForm({
-    form: 'orderForm',
-    validate
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+const validationSchema = Yup.object().shape({
+    name: Yup.string()
+        .min(1)
+        .max(60)
+        .required('this field cannot be empty'),
+    email: Yup.string()
+        .email('invalid email')
+        .required('this field cannot be empty'),
+    phone: Yup.string()
+        .matches(phoneRegExp, 'phone number is not valid')
+        .required('this field cannot be empty'),
+    address: Yup.string()
+        .min(5).max(60)
+        .required('this field cannot be empty')
+})
+
+const FormikOrderForm = withFormik({
+    mapPropsToValues(props) {
+        const {sendFunc} = props
+        return {
+            name: '',
+            email: '',
+            phone: '',
+            address: '',
+            onSend: sendFunc
+        }
+    },
+    handleSubmit(values, {setSubmitting, props}) {
+        props.sendFunc({...values})
+        setSubmitting(false);
+
+    },
+    validationSchema: validationSchema
 })(withRouter(ContactData))
 
-export default orderForm
+
+export default FormikOrderForm

@@ -6,7 +6,6 @@ import Button from '../../UI/Button/Button'
 
 const OrderSummary = (props) => {
     const {ingredients, closeModal, continueOrder, totalPrice} = props
-    console.log(totalPrice)
     const ingredientsSummary = Object.keys(ingredients)
         .map((ingredName, ind) => {
             const [first, ...other] = ingredName

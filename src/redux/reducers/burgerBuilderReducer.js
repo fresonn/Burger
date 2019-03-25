@@ -45,16 +45,6 @@ export default (state = initialState, action) => {
             } else {
                 return state
             }
-        case AT.CLEAR_BEFORE_UNMOUNTING:
-            return {
-                ingredients: {
-                    cheese: 0,
-                    meat: 0,
-                    salad: 0,
-                    bacon: 0
-                },
-                totalPrice: 0
-            }
         default:
             return state
     }

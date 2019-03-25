@@ -69,12 +69,14 @@ const Orders = props => {
         }
     }, [])
 
+
     const readyOrders = orders.map(order => {
         return (
             <Order 
                 date={order.date} 
                 key={order.id}
                 ingredients={order.ingredients}
+                price={order.price}
              />
         )
     })

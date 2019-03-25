@@ -1,5 +1,10 @@
 $tablet-width: 768px;
 
+.MainBackground {
+    background-color: rgb(180, 166, 132);
+    background: radial-gradient(ellipse at center, rgba(252,234,187,1) 0%, rgba(255,207,87,1) 91%, rgba(255,207,87,1) 100%);
+}
+
 .CheckoutWrapper {
     position: relative;
     display: block;

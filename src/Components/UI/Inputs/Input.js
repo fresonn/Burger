@@ -8,8 +8,6 @@ const Input = props => {
         classFor, 
         showLabel, 
         changeFunc,
-        //
-        meta
     } = props
     
     const attachedClass = []
@@ -29,7 +27,6 @@ const Input = props => {
                 className={classes[classFor]} 
                 placeholder={placeholder}
             />
-            { meta.error && meta.touched && <p>{meta.error}</p> }
         </div>
     )
 }
