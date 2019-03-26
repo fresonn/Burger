@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // import classes from './BurgerBuilder.scss'
 import { connect } from 'react-redux'
-import * as AT from '../../redux/actionType'
+import * as Builder from '../../redux/actions/burgerBuilderAction'
+
 import axios from '../../axios_config/axios_config'
 import _axios from 'axios'
 
@@ -93,17 +94,8 @@ const BurgerBuilder = class extends Component {
         })
     }
 
-
     continueOrderHandler = () => {
         this.props.history.push('/checkout-form')
-        // const params = Object.entries(this.props.ingredients).map(item => {
-        //     return (encodeURIComponent(item[0]) + '=' + encodeURIComponent(item[1]))
-        // })
-
-        // this.props.history.push({
-        //     pathname: '/checkout-form',
-        //     search: '?' + params.join('&')
-        // })
     }
 
     render() {
@@ -165,9 +157,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddIngredient: (type, price) => dispatch({ type: AT.NEW_BURGER_IGREDIENT, payload: {type, price} }),
-        onRemoveIngredient: (type, price) => dispatch({ type: AT.REMOVE_BURGER_INGREDIENT, payload: {type, price} }),
-        onClearBurger: () => dispatch({ type: AT.EMPTY_BURGER })
+        onAddIngredient: (type, price) => dispatch(Builder.addIngredient(type, price)),
+        onRemoveIngredient: (type, price) => dispatch(Builder.removeIngredient(type, price)),
+        onClearBurger: () => dispatch(Builder.clearBurger())
     }
 }
 

@@ -5,7 +5,7 @@ import classes from './Layout.scss'
 
 import ToolBar from '../../Components/Navigation/ToolBar/ToolBar'
 import Drawer from '../../Components/Navigation/Drawer/Drawer'
-import Footer from '../../Containers/Footer/Footer'
+import Footer from '../../Components/Footer/Footer'
 
 const Layout = (props) => {
     const [ drawer, changeDrawer ] = useState(false)

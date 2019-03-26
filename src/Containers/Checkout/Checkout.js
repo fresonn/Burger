@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        onSendAllData: (userInfoObject) => dispatch()
     }
 }
 

@@ -3,7 +3,6 @@ import classes from './Footer.scss'
 import { withRouter, Link } from 'react-router-dom'
 
 const Footer = (props) => {
-    console.log('Footer', props)
     return (
         <footer className={classes.MainFooter}>
             <div className={classes.FooterContainer}>
@@ -13,7 +12,7 @@ const Footer = (props) => {
                         <Link to='/'>Home</Link>
                     </p>
                     <p className={classes.PageItem}>
-                        <Link to='/orders'>Orders</Link>
+                        {/* <Link to='/orders'>Orders</Link> */}
                     </p>
                 </div>
                 <div className={classes.NetworkContainer}>
@@ -42,7 +41,6 @@ const Footer = (props) => {
                     <p className={classes.ContactItem}>Maidan Constitution 11</p>
                 </div>
             </div>
-
             <h4 className={classes.CopyrightText}>Copyright {new Date().getFullYear()}</h4>
         </footer>
     )

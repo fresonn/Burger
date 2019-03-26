@@ -1,1 +1,3 @@
+URL: https://burger-app-js.firebaseapp.com/
+
 Burger project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
