@@ -47,6 +47,69 @@ $tablet-width: 768px;
     }
 }
 
+
+
+// Build Controls
+
+$order-button_ds: rgb(179, 112, 63);
+
+
+.orderButton {
+    margin: 15px 0;
+    display: block;
+    font: inherit;
+    outline: none;
+    padding: 12px 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgb(23, 23, 23);
+    border: 2px solid saddlebrown;
+    border-radius: 8px 0 0 8px;
+    background-color: #CE8F2D;
+    transition: background-color 170ms ease-in;
+    &:hover {
+        cursor: pointer;
+        background-color: #CE8F2D;
+    }
+    &:active {
+        background-color: $order-button_ds;
+    }
+    &:disabled {
+        cursor: default;
+        color: rgb(235, 235, 235);
+        background-color: $order-button_ds;
+        text-shadow: none;
+    }
+}
+
+
+.ClearBurger {
+    margin: 15px 0;
+    display: block;
+    font: inherit;
+    outline: none;
+    padding: 12px 16px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgb(23, 23, 23);
+    border: 2px solid saddlebrown;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    background-color: rgb(190, 63, 48);
+    transition: background-color 170ms ease-in;
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(232, 76, 58);
+    }
+    &:active {
+        background-color: rgb(190, 63, 48);
+    }
+}
+
+
+
 // DRAWER
 
 .DrawerCloseButton {

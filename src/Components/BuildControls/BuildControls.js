@@ -3,6 +3,7 @@ import classes from './BuildControls.scss'
 
 
 import Control from './Control/Control'
+import Button from '../UI/Button/Button'
 
 const controls = [
     { label: 'Salad', type: 'salad' },
@@ -11,8 +12,10 @@ const controls = [
     { label: 'Bacon', type: 'bacon' }
 ]
 
+
+
 const BuildControls = props => {
-    const {isOrdered, purchasingStart} = props
+    const {isOrdered, purchasingStart, clearBurger} = props
 
     return (
         <section>
@@ -28,11 +31,17 @@ const BuildControls = props => {
                         />
                     )
                 }) }
-                <button
-                    onClick={purchasingStart}
-                    className={classes.orderButton}
+                <div  className={classes.ButtonContainer}>
+                <Button
+                    classFor={'orderButton'}
+                    clickFunc={purchasingStart}
                     disabled={!isOrdered}
-                >order now</button>
+                >order now</Button>
+                <Button
+                    clickFunc={clearBurger}
+                    classFor={'ClearBurger'}
+                >clear</Button>
+                </div>
             </div>
         </section>
     )

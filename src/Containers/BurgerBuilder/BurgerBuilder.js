@@ -142,6 +142,7 @@ const BurgerBuilder = class extends Component {
                     totalPrice={this.props.totalPrice}
                     isOrdered={this.props.totalPrice > 0}
                     purchasingStart={this.purechasingHandler}
+                    clearBurger={this.props.onClearBurger}
                 />
             </>
         )
@@ -165,7 +166,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddIngredient: (type, price) => dispatch({ type: AT.NEW_BURGER_IGREDIENT, payload: {type, price} }),
-        onRemoveIngredient: (type, price) => dispatch({ type: AT.REMOVE_BURGER_INGREDIENT, payload: {type, price} })
+        onRemoveIngredient: (type, price) => dispatch({ type: AT.REMOVE_BURGER_INGREDIENT, payload: {type, price} }),
+        onClearBurger: () => dispatch({ type: AT.EMPTY_BURGER })
     }
 }
 

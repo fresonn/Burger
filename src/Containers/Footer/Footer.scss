@@ -1,0 +1,131 @@
+$tablet-width: 768px;
+
+
+$footer-background: rgb(255, 153, 51);
+$text-color: #803300;
+
+$networks-size: 42px;
+$twitter: #1DA1F1;
+$facebook: #4267B2;
+$instagram: #E63A60;
+
+.MainFooter {
+    background-color: $footer-background;
+    padding: 30px 0 1px 0;
+}
+
+.FooterContainer {
+    display: flex;
+    flex-basis: 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.FooterNavigation {
+    width: 170px;
+}
+
+.FooterNavigation_Title {
+    color: $text-color;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.PageItem {
+    margin: 5px 0;
+    a {
+        color: $text-color;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+.NetworkContainer {
+    align-self: center;
+}
+
+.socialNetworksList {
+    width: 180px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Network_Instagram {
+    margin: 10px;
+    a {
+        font-size: $networks-size;
+        color: $text-color;
+        transition: color 140ms ease-in;
+        &:hover {
+            cursor: pointer;
+            color: $instagram;
+        }
+    }
+}
+
+.Network_Facebook {
+    margin: 10px;
+    a {
+        font-size: $networks-size;
+        color: $text-color;
+        transition: color 140ms ease-in;
+        &:hover {
+            cursor: pointer;
+            color: $facebook;
+        }
+    }
+
+}
+
+.Network_Twitter {
+    margin: 10px;
+    a {
+        font-size: $networks-size;
+        color: $text-color;
+        transition: color 140ms ease-in;
+        &:hover {
+            cursor: pointer;
+            color: $twitter;
+        }
+    }
+}
+
+.ContactItem {
+    color: $text-color;
+    margin: 5px 0;
+}
+
+.ContactsContainer {
+    max-width: 170px;
+    text-align: end;    
+}
+
+.CopyrightText {
+    color: $text-color;
+    text-align: center;
+    margin: 10px 0;
+}
+
+
+@media (max-width: $tablet-width) {
+    .FooterContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .FooterNavigation {
+        text-align: center;
+    }
+    .NetworkContainer {
+        margin: 10px 0;
+    }
+    .ContactsContainer {
+        text-align: center;
+    }
+}
