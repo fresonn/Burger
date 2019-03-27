@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import * as Builder from '../../redux/actions/burgerBuilderAction'
 
 import axios from '../../axios_config/axios_config'
-import _axios from 'axios'
 
 import Burger from '../../Components/Burger/Burger'
 import BuildControls from '../../Components/BuildControls/BuildControls'
@@ -17,107 +16,39 @@ import withError from '../../Hoc/withError/withError'
 
 
 const BurgerBuilder = class extends Component {
-    isMount = false
-    state = {
-        ingredientPrice: {
-            cheese: 0,
-            meat: 0,
-            salad: 0,
-            bacon: 0
-        },
-        purechasing: false,
-        loading: false,
-        prefetchDataError: false,
-    }
-
 
     componentDidMount() {
-        this.CancelTokenSource = _axios.CancelToken.source()
-        this.isMount = true
-    
-        axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json', {
-                cancelToken: this.CancelTokenSource.token
-            })
-            .then(resp => {
-                console.log(resp)
-                if (this.isMount) {
-                    this.setState({
-                        ingredientPrice: resp.data
-                    })
-                }
-            })
-            .catch(err => {
-                if (this.isMount) {
-                    this.setState({
-                        prefetchDataError: true
-                    })
-                }
-            })
+        this.props.onInitPrice()
     }
 
     componentWillUnmount() {
-        this.isMount = false
-        this.CancelTokenSource && this.CancelTokenSource.cancel()
+        this.props.onUnmountPurchasing()
     }
     
-
-    retryFetchDataHandler = () => {
-        axios.get('https://burger-app-js.firebaseio.com/ingredientsPrice.json')
-            .then(resp => {
-                console.log(resp)
-                this.setState({
-                    ingredientPrice: resp.data,
-                    prefetchDataError: false
-                })
-            })
-            .catch(err => {
-                this.setState({
-                    prefetchDataError: true
-                })
-            })
-    }
-
     
-    newIngredientHandler = type => {
-        this.props.onAddIngredient(type, this.state.ingredientPrice[type])
-    }
-
-
-    removeIngredientHandler = type => {      
-        this.props.onRemoveIngredient(type, this.state.ingredientPrice[type])
-    }
-
-
-    purechasingHandler = () => {
-        this.setState({
-            purechasing: !this.state.purechasing
-        })
-    }
-
     continueOrderHandler = () => {
         this.props.history.push('/checkout-form')
     }
 
     render() {
-        console.log('Props', this.props)
         let modal = (
-            <Modal showModal={this.state.purechasing}
-                   closeModal={this.purechasingHandler}
+            <Modal showModal={this.props.purechasing}
+                   closeModal={this.props.onChangePurechasing}
                 >
                 <OrderSummary
                     ingredients={this.props.ingredients}
-                    closeModal={this.purechasingHandler}
+                    closeModal={this.props.onChangePurechasing}
                     continueOrder={this.continueOrderHandler}
                     totalPrice={this.props.totalPrice}
                 />
             </Modal>
         )
         
-        if (this.state.loading) {
+        if (this.props.loading) {
             modal = (
-                <Modal showModal={this.state.purechasing}
-                    closeModal={this.purechasingHandler}
-                    hideForLoader={this.state.loading}
+                <Modal showModal={this.props.purechasing}
+                    closeModal={this.props.onChangePurechasing}
+                    hideForLoader={this.props.loading}
                     >
                     <OrderLoader />
                 </Modal>
@@ -126,14 +57,14 @@ const BurgerBuilder = class extends Component {
         
         const controlBurger = (
             <>
-            { this.state.purechasing ? modal : null  }
+            { this.props.purechasing ? modal : null  }
                 <Burger  ingredients={this.props.ingredients} />
                 <BuildControls
-                    addIngredFunc={this.newIngredientHandler}
-                    deleteInredFunc={this.removeIngredientHandler}
+                    addIngredFunc={this.props.onAddIngredient}
+                    deleteInredFunc={this.props.onRemoveIngredient}
                     totalPrice={this.props.totalPrice}
                     isOrdered={this.props.totalPrice > 0}
-                    purchasingStart={this.purechasingHandler}
+                    purchasingStart={this.props.onChangePurechasing}
                     clearBurger={this.props.onClearBurger}
                 />
             </>
@@ -141,7 +72,7 @@ const BurgerBuilder = class extends Component {
 
         return (
             <>
-                {!this.state.prefetchDataError ? controlBurger : <FetchError retryFunc={this.retryFetchDataHandler}/>}
+                {!this.props.prefetchDataError ? controlBurger : <FetchError retryFunc={this.props.onRetryInitPrice}/>}
             </>
         )
     }
@@ -151,15 +82,22 @@ const BurgerBuilder = class extends Component {
 const mapStateToProps = (state) => {
     return {
         ingredients: state.builder.ingredients,
-        totalPrice: state.builder.totalPrice
+        totalPrice: state.builder.totalPrice,
+        loading: state.builder.loading,
+        prefetchDataError: state.builder.prefetchDataError,
+        purechasing: state.builder.purechasing
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddIngredient: (type, price) => dispatch(Builder.addIngredient(type, price)),
-        onRemoveIngredient: (type, price) => dispatch(Builder.removeIngredient(type, price)),
-        onClearBurger: () => dispatch(Builder.clearBurger())
+        onAddIngredient: (type) => dispatch(Builder.addIngredient(type)),
+        onRemoveIngredient: (type) => dispatch(Builder.removeIngredient(type)),
+        onClearBurger: () => dispatch(Builder.clearBurger()),
+        onInitPrice: () => dispatch(Builder.fetchAfterMounting()),
+        onRetryInitPrice: () => dispatch(Builder.retryFetchData()),
+        onChangePurechasing: () => dispatch(Builder.stopPurechasing()),
+        onUnmountPurchasing: () => dispatch(Builder.defaultPurechasing())
     }
 }
 

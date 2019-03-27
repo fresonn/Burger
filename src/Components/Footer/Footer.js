@@ -12,7 +12,7 @@ const Footer = (props) => {
                         <Link to='/'>Home</Link>
                     </p>
                     <p className={classes.PageItem}>
-                        {/* <Link to='/orders'>Orders</Link> */}
+                        <Link to='/orders'>Orders</Link>
                     </p>
                 </div>
                 <div className={classes.NetworkContainer}>

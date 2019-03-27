@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import './index.scss'
 
 // HOC
 import Layout from './Hoc/Layout/Layout'
+import { connect } from 'react-redux'
 
 // Components
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
@@ -15,16 +16,23 @@ const App = class extends Component {
 
 
     render() {
+        const { totalPrice } = this.props
         return (
             <Layout>
                 <Switch>
                     <Route exact path={'/'} component={BurgerBuilder} />
                     <Route path={'/orders'} component={Orders} />
-                    <Route path={'/checkout-form'} component={Checkout} />
+                    { totalPrice ? <Route path={'/checkout-form'} component={Checkout} /> : <Redirect to='/'/>}
                 </Switch>
             </Layout>
         )
     }
 }
 
-export default App
+const mapStateToProps = (state) => {
+    return {
+        totalPrice: state.builder.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(App)

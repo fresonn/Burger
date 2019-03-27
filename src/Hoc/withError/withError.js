@@ -25,7 +25,7 @@ const WithError = (WrappedComponent, axios) => {
             return () => {
                 axios.interceptors.request.eject(reqInterceptor)
                 axios.interceptors.response.eject(resInterceptor)
-                console.log(reqInterceptor, resInterceptor)
+                // console.log(reqInterceptor, resInterceptor)
                 // После очистки оба должны получить значение 0
             }
         }, []) 

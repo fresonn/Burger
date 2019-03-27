@@ -1,8 +1,9 @@
 import React from 'react'
 import classes from './Orders.scss'
-import { useState, useEffect } from 'react'
-import axios from '../../axios_config/axios_config'
-import _axios from 'axios'
+import { useEffect } from 'react'
+
+import { connect } from 'react-redux'
+import * as toOrder from '../../redux/actions/ordersAction'
 
 import Order from '../../Components/Order/Order'
 import FetchError from '../../Components/UI/FetchError/FetchError'
@@ -11,66 +12,16 @@ import EmptyContainer from '../../Components/UI/EmptyContainer/EmptyContainer'
 
 
 
-const Orders = props => {
-    // const [mountC, unmountC] = useState(false)
-    const [orders, newOrders] = useState([])
-    const [loading, changeLoading] = useState(true)
-
-    
-    const [error, changeError] = useState(null)
-
-    const getReceivedOrders = () => {
-        axios.get('/orders.json')
-        .then(res => {
-            const receivedOrders = []
-            for (const key in res.data) {
-                receivedOrders.push({
-                    ...res.data[key],
-                    id: key
-                })
-            }
-            console.log(receivedOrders)
-            changeError(null)
-            changeLoading(false)
-            newOrders(receivedOrders)
-        })
-        .catch(err => {
-            changeLoading(false)
-            changeError(err)
-        })
-    }
-
+const Orders = props => {    
 
     useEffect(() => {
-        let CancelTokenSource = _axios.CancelToken.source();
-        
-        axios.get('/orders.json', {
-                cancelToken: CancelTokenSource.token
-            })
-            .then(res => {
-                const receivedOrders = []
-                for (const key in res.data) {
-                    receivedOrders.push({
-                        ...res.data[key],
-                        id: key
-                    })
-                }
-                console.log(receivedOrders)
-                // changeError(null)
-                changeLoading(false)
-                newOrders(receivedOrders)
-            })
-            .catch(err => {
-                changeLoading(false)
-                changeError(err)
-            })
+        props.onLoadedOrders()
         return () => {
-            CancelTokenSource && CancelTokenSource.cancel()
+            props.onClear()
         }
     }, [])
 
-
-    const readyOrders = orders.map(order => {
+    const readyOrders = props.orders.map(order => {
         return (
             <Order 
                 date={order.date} 
@@ -83,11 +34,28 @@ const Orders = props => {
 
     return (
         <div className={classes.Orders}>
-            { loading ? <OrderLoader /> : null }
-            { error ? <FetchError retryFunc={getReceivedOrders}>{error.message}</FetchError> : null }
-            {orders.length === 0 && error === null && !loading ? <EmptyContainer /> : readyOrders }
+            { props.loading ? <OrderLoader /> : null }
+            { props.error ? <FetchError retryFunc={props.onLoadedOrders}>{props.error.message}</FetchError> : null }
+            {props.orders.length === 0 && props.error === null && !props.loading ? <EmptyContainer /> : readyOrders }
         </div>
     )
 }
 
-export default Orders
+
+const mapStateToProps = (state) => {
+    return {
+        orders: state.orders.orders,
+        loading: state.orders.loading,
+        error: state.orders.error
+    }
+}
+
+const mapDispathToProps = (dispatch) => {
+    return {
+        onLoadedOrders: () => dispatch(toOrder.fetchOrders()),
+        onClear: () => dispatch(toOrder.clearOrders())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispathToProps)(Orders)
