@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 import Checkout from './Containers/Checkout/Checkout'
 import Orders from './Containers/Orders/Orders'
-
+import Auth from './Containers/Auth/Auth'
 
 const App = class extends Component {
 
@@ -22,6 +22,7 @@ const App = class extends Component {
                 <Switch>
                     <Route exact path={'/'} component={BurgerBuilder} />
                     <Route path={'/orders'} component={Orders} />
+                    <Route path={'/auth'} component={Auth}/>
                     { totalPrice ? <Route path={'/checkout-form'} component={Checkout} /> : <Redirect to='/'/>}
                 </Switch>
             </Layout>

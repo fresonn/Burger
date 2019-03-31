@@ -1,0 +1,52 @@
+$tablet-width: 768px;
+$order_cancel: rgb(222, 51, 51);
+
+
+.AuthFormWrapper {
+    padding: 24px 0;
+}
+
+.InputsContainer {
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.InputInfo {
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+    color: $order_cancel;
+}
+
+.AuthInput {
+    border: none;
+    box-sizing: border-box;
+    background: #fff;
+    border: none;
+    // max-width: 510px;s
+    margin: 20px 0 3px 0;
+    font: inherit;
+    border: 2px solid #AB3939;
+    padding: 10px;
+    padding-left: 10px;
+    width: 100%;
+    transition: all 150ms ease-in;
+}
+
+@media (min-width: $tablet-width) {
+
+    .InputsContainer {
+
+    }
+
+    .AuthFormWrapper {
+        background-color: blueviolet;
+    }
+    .AuthInput {
+        outline: none;
+    }
+    .InputInfo {
+        text-align: end;
+    }
+}

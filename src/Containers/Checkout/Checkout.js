@@ -61,11 +61,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSendAllData: (userInfoObject) => dispatch()
-    }
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
+export default connect(mapStateToProps)(Checkout)
