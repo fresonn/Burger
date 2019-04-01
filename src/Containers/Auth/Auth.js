@@ -2,16 +2,18 @@ import React from 'react'
 import classes from './Auth.scss'
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
-// import Button from '../../Components/UI/Button/Button'
+import Button from '../../Components/UI/Button/Button'
+import { connect } from 'react-redux'
+import * as _auth from '../../redux/actions/authAction'
 
 const Auth = (props) => {
     const { touched, errors } = props
 
     const inputItems = [
         {
-            inputType: "tel",
+            inputType: "email",
             name: "login",
-            placeholder: 'Your phone - is login'
+            placeholder: 'Your e-mail'
         },
         {
             inputType: "password",
@@ -39,33 +41,38 @@ const Auth = (props) => {
                         )
                     }) }
                 </div>
-                <button type='submit'>confirm</button>
+                <Button classFor='AuthFormButton'  type='submit'>confirm</Button>
             </Form>
         </div>
     )
 }
 
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-
-const FormikAuth = withFormik({
-mapPropsToStatus() {
+const mapDispatchToProps = (dispatch) => {
     return {
-        login: '',
-        pass: ''
-    };
-},
-handleSubmit(values) {
-    console.log(values)
-},
-validationSchema: Yup.object().shape({
-    login: Yup.string()
-        .matches(phoneRegExp, 'phone number is not valid')
-        .required('this field cannot be empty'),
-    pass: Yup.string()
-        .min(6)
-        .max(40)
-        .required('this field cannot be empty')
-})
-})(Auth);
+        onAuth: (dataObject) => dispatch(_auth.authStart(dataObject))
+    }
+}
 
-export default FormikAuth;
+const formikAuth = withFormik({
+    mapPropsToValues() {
+        return {
+            login: '',
+            pass: ''
+        };
+    },
+    handleSubmit(values, { props }) {
+        props.onAuth({...values})
+    },
+    validationSchema: Yup.object().shape({
+        login: Yup.string()
+            .email('invalid email')
+            .required('this field cannot be empty'),
+        pass: Yup.string()
+            .min(6)
+            .max(40)
+            .required('this field cannot be empty')
+    })
+})(connect(null, mapDispatchToProps)(Auth));
+
+
+export default connect(null, mapDispatchToProps)(formikAuth);

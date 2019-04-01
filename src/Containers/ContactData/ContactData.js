@@ -103,13 +103,11 @@ const validationSchema = Yup.object().shape({
 
 const FormikOrderForm = withFormik({
     mapPropsToValues(props) {
-        const {sendFunc} = props
         return {
             name: '',
             email: '',
             phone: '',
             address: '',
-            onSend: sendFunc
         }
     },
     handleSubmit(values, {setSubmitting, props}) {
