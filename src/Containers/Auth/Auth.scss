@@ -1,6 +1,21 @@
 $tablet-width: 768px;
 $order_cancel: rgb(222, 51, 51);
 
+@mixin hide {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
 
 .AuthFormWrapper {
     padding: 24px 0;
@@ -35,14 +50,88 @@ $order_cancel: rgb(222, 51, 51);
     transition: all 150ms ease-in;
 }
 
+
+.AuthButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+$primary: rgb(92, 217, 15);
+$primary-light: #00ba0c;
+$r-color: #924205;
+
+
+.Switcher {
+    position: relative;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.Switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    outline: none;
+}
+
+.Switch input {
+    @include hide();
+}
+
+.Slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $r-color;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.Slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .Slider {
+    background: $r-color;
+}
+
+input:focus + .Slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .Slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+
+
 @media (min-width: $tablet-width) {
 
-    .InputsContainer {
+    // .InputsContainer {
 
-    }
+    // }
 
     .AuthFormWrapper {
-        background-color: blueviolet;
+        background-color: rgb(43, 226, 211);
     }
     .AuthInput {
         outline: none;

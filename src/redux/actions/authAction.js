@@ -9,6 +9,11 @@ export const authSuccess = (userData) => {
     }
 }
 
+export const authChange = () => {
+    return {
+        type: AT.AUTH_CHANGE_MODE
+    }
+}
 
 export const authFail = (err) => {
     return {
@@ -18,10 +23,13 @@ export const authFail = (err) => {
 }
 
 
-export const authStart = (dataObject) => {
+export const authStart = (dataObject, isSignup) => {
     return (dispatch) => {
         const apiKey = 'AIzaSyBBqOCHjapwcgk8K16cE05rQnN0zs_MOMg'
-        const _url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${apiKey}`
+        let _url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${apiKey}`
+        if (!isSignup) {
+            _url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`
+        }
         const authData = {
             email: dataObject.login,
             password: dataObject.pass,

@@ -22,6 +22,7 @@ const Auth = (props) => {
         }
     ]
 
+    console.log(props)
     return (
         <div className={classes.AuthFormWrapper}>
             <Form>
@@ -41,27 +42,46 @@ const Auth = (props) => {
                         )
                     }) }
                 </div>
-                <Button classFor='AuthFormButton'  type='submit'>confirm</Button>
+                <div className={classes.AuthButtonContainer}>
+                    <Button classFor='AuthFormButton'  type='submit'>
+                        {props.isSignupMode ? 'sign up' : 'sign in' }
+                    </Button>
+                </div>
             </Form>
+            <div className={classes.Switcher}>
+                <label className={classes.Switch}>
+                    <input type="checkbox" value={props.isSignupMode} checked={props.isSignupMode} onChange={props.onChangeMode} />
+                    <div className={classes.Slider}></div>
+                </label>
+            </div>
         </div>
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        isSignupMode: state.auth.isSignupMode
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAuth: (dataObject) => dispatch(_auth.authStart(dataObject))
+        onAuth: (dataObject, mode) => dispatch(_auth.authStart(dataObject, mode)),
+        onChangeMode: () => dispatch(_auth.authChange())
     }
 }
 
 const formikAuth = withFormik({
-    mapPropsToValues() {
+    mapPropsToValues(props) {
+        console.log(props, 'ppppppp')
         return {
             login: '',
             pass: ''
         };
     },
     handleSubmit(values, { props }) {
-        props.onAuth({...values})
+        console.log('iii', props)
+        props.onAuth({...values}, props.isSignupMode)
     },
     validationSchema: Yup.object().shape({
         login: Yup.string()
@@ -72,7 +92,7 @@ const formikAuth = withFormik({
             .max(40)
             .required('this field cannot be empty')
     })
-})(connect(null, mapDispatchToProps)(Auth));
+})(Auth);
 
 
-export default connect(null, mapDispatchToProps)(formikAuth);
+export default connect(mapStateToProps, mapDispatchToProps)(formikAuth);
