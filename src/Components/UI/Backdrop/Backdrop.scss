@@ -34,6 +34,13 @@ $tablet-width: 768px;
 }
 
 
+.authFormBackdrop {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: $backdrop-color;
+}
+
 
 @media(min-width: $tablet-width) {
     .DrawerBackdrop {

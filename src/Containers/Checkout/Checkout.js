@@ -23,7 +23,7 @@ const Checkout = props => {
             data: userInfo,
             date: new Date().toLocaleTimeString()
         }
-        axios.post('/orders.json', userOrder)
+        axios.post(`/orders.json?auth=${props.token}`, userOrder)
             .then(resp => {
                 changeLoading(false)
                 props.history.replace('/orders')
@@ -57,7 +57,8 @@ const Checkout = props => {
 const mapStateToProps = (state) => {
     return {
         ingredients: state.builder.ingredients,
-        totalPrice: state.builder.totalPrice
+        totalPrice: state.builder.totalPrice,
+        token: state.auth.token
     }
 }
 

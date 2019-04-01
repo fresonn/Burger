@@ -22,9 +22,9 @@ export const clearOrders = () => {
 }
 
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
     return (dispatch) => {        
-        axios.get('/orders.json')
+        axios.get('/orders.json?auth=' + token)
             .then(res => {
                 const received = []
                 for (const key in res.data) {

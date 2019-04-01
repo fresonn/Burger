@@ -7,12 +7,8 @@ import NavigationItem from '../NavigationList/NavItem/NavigationItem'
 import Button from '../../UI/Button/Button'
 
 const ToolBar = (props) => {
-    const {closeFunc} = props
+    const {closeFunc, links} = props
     
-    const links = [
-        { title: 'Burger Builder', address: '/', exact: true },
-        { title: 'Orders', address: '/orders', exact: false }
-    ]
 
     const onRootPage = () => {
         props.history.replace('/')

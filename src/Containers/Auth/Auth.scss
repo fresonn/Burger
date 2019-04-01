@@ -18,6 +18,7 @@ $order_cancel: rgb(222, 51, 51);
 }
 
 .AuthFormWrapper {
+    position: relative;
     padding: 24px 0;
     background-color: #ffcc66;
 }
@@ -40,7 +41,6 @@ $order_cancel: rgb(222, 51, 51);
     box-sizing: border-box;
     background: #fff;
     border: none;
-    // max-width: 510px;s
     margin: 20px 0 3px 0;
     font: inherit;
     border: 2px solid #AB3939;
@@ -57,11 +57,34 @@ $order_cancel: rgb(222, 51, 51);
 }
 
 
+.ErrorUiBox {
+    position: absolute;
+    padding: 1px;
+    z-index: 405;
+    width: 40%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: yellow;
+    border: 2px solid;
+    border-radius: 30px;
+    .Image {
+        max-width: 120px;
+        width: 30%;
+        display: block;
+        margin: 14px auto;
+        left: 50%;
+    }
+    .SubTitle {
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+}
+
 
 $primary: rgb(92, 217, 15);
 $primary-light: #00ba0c;
 $r-color: #924205;
-
 
 .Switcher {
     position: relative;
@@ -126,17 +149,21 @@ input:checked + .Slider:before {
 
 @media (min-width: $tablet-width) {
 
-    // .InputsContainer {
+    .InputsContainer {
 
-    // }
-
-    .AuthFormWrapper {
-        background-color: rgb(43, 226, 211);
     }
+
+    // .AuthFormWrapper {
+    //     background-color: rgb(43, 226, 211);
+    // }
     .AuthInput {
         outline: none;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+        max-width: 510px;
     }
     .InputInfo {
-        text-align: end;
+        font-weight: 700;
     }
 }

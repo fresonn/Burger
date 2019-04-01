@@ -3,17 +3,23 @@ import classes from './Footer.scss'
 import { withRouter, Link } from 'react-router-dom'
 
 const Footer = (props) => {
+    const { links } = props
     return (
         <footer className={classes.MainFooter}>
             <div className={classes.FooterContainer}>
                 <div className={classes.FooterNavigation}>
                     <h4 className={classes.FooterNavigation_Title}>Navigation:</h4>
-                    <p className={classes.PageItem}>
-                        <Link to='/'>Home</Link>
-                    </p>
-                    <p className={classes.PageItem}>
-                        <Link to='/orders'>Orders</Link>
-                    </p>
+                    <ul className={classes.NavFooterList}>
+                        { links.map((link, ind) => {
+                            return (
+                                <li key={ind}>
+                                    <p className={classes.PageItem}>
+                                        <Link to={link.address}>{link.title}</Link>
+                                    </p>
+                                </li>
+                            )
+                        }) }
+                    </ul>
                 </div>
                 <div className={classes.NetworkContainer}>
                 <ul className={classes.socialNetworksList}>
@@ -41,7 +47,11 @@ const Footer = (props) => {
                     <p className={classes.ContactItem}>Maidan Constitution 11</p>
                 </div>
             </div>
-            <h4 className={classes.CopyrightText}>Copyright {new Date().getFullYear()}</h4>
+            <h4 className={classes.CopyrightText}>
+            <i className="fa fa-copyright" aria-hidden="true"></i>
+            {new Date().getFullYear()}
+            {' Burger ltd.'}
+            </h4>
         </footer>
     )
 }

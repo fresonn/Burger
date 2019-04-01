@@ -236,6 +236,22 @@ $lighting_percent: 9%;
     }
 }
 
+.authCloseModal {
+    cursor: pointer;
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 30px;
+    right: 10px;
+    top: 4px;
+    outline: none;
+    transition: transform 140ms ease-in;
+    &:hover {
+        transform: scale(1.2);
+        color: rgb(215, 90, 74);
+    }
+}
+
 
 @media(max-width: $tablet-width) {
     .BurgerMenuButton {

@@ -11,18 +11,19 @@ import BurgerBuilder from './Containers/BurgerBuilder/BurgerBuilder'
 import Checkout from './Containers/Checkout/Checkout'
 import Orders from './Containers/Orders/Orders'
 import Auth from './Containers/Auth/Auth'
+import LogOut from './Containers/Auth/LogOut/LogOut'
 
 const App = class extends Component {
-
-
     render() {
-        const { totalPrice } = this.props
+        const { totalPrice, isAuthenticated } = this.props
+        console.log(this.props)
         return (
             <Layout>
                 <Switch>
                     <Route exact path={'/'} component={BurgerBuilder} />
-                    <Route path={'/orders'} component={Orders} />
                     <Route path={'/auth'} component={Auth}/>
+                    <Route path={'/logout'} component={LogOut} />
+                    { isAuthenticated !== null ? <Route path={'/orders'} component={Orders} /> : <Redirect to='/'/> }
                     { totalPrice ? <Route path={'/checkout-form'} component={Checkout} /> : <Redirect to='/'/>}
                 </Switch>
             </Layout>
@@ -32,7 +33,8 @@ const App = class extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        totalPrice: state.builder.totalPrice
+        totalPrice: state.builder.totalPrice,
+        isAuthenticated: state.auth.token
     }
 }
 

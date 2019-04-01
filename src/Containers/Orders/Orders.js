@@ -15,7 +15,7 @@ import EmptyContainer from '../../Components/UI/EmptyContainer/EmptyContainer'
 const Orders = props => {    
 
     useEffect(() => {
-        props.onLoadedOrders()
+        props.onLoadedOrders(props.token)
         return () => {
             props.onClear()
         }
@@ -33,7 +33,7 @@ const Orders = props => {
     })
 
     return (
-        <div className={classes.Orders}>
+        <div className={props.orders.length !== 0 ? classes.Orders : classes.EmptyOrders}>
             { props.loading ? <OrderLoader /> : null }
             { props.error ? <FetchError retryFunc={props.onLoadedOrders}>{props.error.message}</FetchError> : null }
             {props.orders.length === 0 && props.error === null && !props.loading ? <EmptyContainer /> : readyOrders }
@@ -46,13 +46,15 @@ const mapStateToProps = (state) => {
     return {
         orders: state.orders.orders,
         loading: state.orders.loading,
-        error: state.orders.error
+        error: state.orders.error,
+        // проверка на token 
+        token: state.auth.token
     }
 }
 
 const mapDispathToProps = (dispatch) => {
     return {
-        onLoadedOrders: () => dispatch(toOrder.fetchOrders()),
+        onLoadedOrders: (token) => dispatch(toOrder.fetchOrders(token)),
         onClear: () => dispatch(toOrder.clearOrders())
     }
 }

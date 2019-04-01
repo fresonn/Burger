@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './Auth.scss'
 import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Button from '../../Components/UI/Button/Button'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as _auth from '../../redux/actions/authAction'
+import LogoLoader from '../../Components/UI/Loaders/LogoLoader/LogoLoader'
+import Backdrop from '../../Components/UI/Backdrop/Backdrop'
+import ErrImg from '../../assets/images/error-image.svg'
 
 const Auth = (props) => {
     const { touched, errors } = props
-
     const inputItems = [
         {
             inputType: "email",
@@ -22,9 +25,36 @@ const Auth = (props) => {
         }
     ]
 
-    console.log(props)
-    return (
+    useEffect(() => {
+        console.log(props.token)
+        if (props.token) {
+            props.history.replace('/')
+        }
+    }, [])
+
+    const loadingUI = (
+        <>
+            <LogoLoader />
+            <Backdrop show={props.loading} classFor={'OrderFormBackdrop'}/>
+        </>
+    )
+
+    const errorUI = (
+        <>
+            <Backdrop show={props.error} classFor={'OrderFormBackdrop'}/>
+            <div className={classes.ErrorUiBox}>
+                <Button classFor={'authCloseModal'} clickFunc={props.onRetryShow}>
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                </Button>
+                <img className={classes.Image} src={ErrImg} alt="Error request/response"/>
+                <p className={classes.SubTitle}>{props.error}</p>
+            </div>
+        </>
+    )
+
+    const FormElement =  (
         <div className={classes.AuthFormWrapper}>
+        { props.loading ? loadingUI : props.error ? errorUI : null}
             <Form>
                 <div className={classes.InputsContainer}>
                     { inputItems.map((input, ind) => {
@@ -56,31 +86,35 @@ const Auth = (props) => {
             </div>
         </div>
     )
+
+    return props.token ? <Redirect to='/' /> : FormElement
 }
 
 const mapStateToProps = (state) => {
     return {
-        isSignupMode: state.auth.isSignupMode
+        isSignupMode: state.auth.isSignupMode,
+        loading: state.auth.loading,
+        error: state.auth.error,
+        token: state.auth.token
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAuth: (dataObject, mode) => dispatch(_auth.authStart(dataObject, mode)),
-        onChangeMode: () => dispatch(_auth.authChange())
+        onAuth: (dataObject, mode) => dispatch(_auth.auth(dataObject, mode)),
+        onChangeMode: () => dispatch(_auth.authChange()),
+        onRetryShow: () => dispatch(_auth.retryAuth())
     }
 }
 
 const formikAuth = withFormik({
     mapPropsToValues(props) {
-        console.log(props, 'ppppppp')
         return {
             login: '',
             pass: ''
         };
     },
     handleSubmit(values, { props }) {
-        console.log('iii', props)
         props.onAuth({...values}, props.isSignupMode)
     },
     validationSchema: Yup.object().shape({

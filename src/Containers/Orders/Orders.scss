@@ -3,7 +3,7 @@ $tablet-width: 768px;
 .Orders {
     position: relative;
     height: 528px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow: auto;
     background: url('../../assets/Patterns/light-pattern.jpg');
     &::-webkit-scrollbar{
@@ -17,7 +17,12 @@ $tablet-width: 768px;
         border-radius: 10px;  
     }
 }
-
+//"auth != null"
+.EmptyOrders {
+    position: relative;
+    height: 528px;
+    background: url('../../assets/Patterns/light-pattern.jpg');
+}
 
 @media (min-width: $tablet-width) {
     .Orders {

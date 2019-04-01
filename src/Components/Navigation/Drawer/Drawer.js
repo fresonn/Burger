@@ -11,7 +11,7 @@ import Backdrop from '../../UI/Backdrop/Backdrop'
 import Button from '../../UI/Button/Button'
 
 const Drawer = (props) => {
-    const {closeFunc, isOpen} = props
+    const {closeFunc, isOpen, links} = props
 
     const attachedClasses = [classes.Drawer]
 
@@ -31,7 +31,7 @@ const Drawer = (props) => {
                 </Button>
                 <Logo />
                 <nav>
-                    <NavigationList closeFunc={closeFunc}/>
+                    <NavigationList links={links} closeFunc={closeFunc}/>
                 </nav>
             </div>
         </aside>
