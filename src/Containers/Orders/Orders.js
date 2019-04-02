@@ -25,6 +25,7 @@ const Orders = props => {
         return (
             <Order 
                 date={order.date} 
+                time={order.time}
                 key={order.id}
                 ingredients={order.ingredients}
                 price={order.price}

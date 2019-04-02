@@ -10,6 +10,7 @@ Link: https://burger-app-js.firebaseapp.com/
 - [redux-thunk](https://github.com/reduxjs/redux-thunk)
 - [formik](https://github.com/jaredpalmer/formik)
 - [yup](https://github.com/jquense/yup)
+- [date-fns](https://github.com/date-fns/date-fns)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

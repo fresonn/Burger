@@ -16,7 +16,6 @@ import LogOut from './Containers/Auth/LogOut/LogOut'
 const App = class extends Component {
     render() {
         const { totalPrice, isAuthenticated } = this.props
-        console.log(this.props)
         return (
             <Layout>
                 <Switch>

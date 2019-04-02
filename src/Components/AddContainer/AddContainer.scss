@@ -1,0 +1,33 @@
+$tablet-width: 768px;
+
+.AddContainer {
+    display: flex;
+    min-height: 200px;
+    .First {
+        width: 100%;
+        background: url('../../assets/coreImages/BurgerParty.svg') no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+    .Second {
+        display: none;
+    }
+}
+
+
+
+@media (min-width: $tablet-width) {
+    .AddContainer {
+        flex-wrap: nowrap;
+        height: 390px;
+        .First {
+            width: 70%;
+        }
+        .Second {
+            display: block;
+            width: 50%;
+            background: url('../../assets/coreImages/delivery.svg') no-repeat;
+            background-size: cover;
+        }
+    }
+}

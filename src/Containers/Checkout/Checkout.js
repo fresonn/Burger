@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classes from './Checkout.scss'
 import axios from '../../axios_config/axios_config'
 import { connect } from 'react-redux'
-
+import dataFns from 'date-fns'
 import CheckoutOrder from '../../Components/CheckoutOrder/CheckoutOrder'
 import ContactData from '../ContactData/ContactData'
 
@@ -17,11 +17,15 @@ const Checkout = props => {
 
     const sendOrderHAndler = userInfo => {
         changeLoading(true)
+        let time = new Date().toLocaleTimeString()
+        let clearTime = time.substr(0, time.length - 3)
+
         const userOrder = {
             ingredients: props.ingredients,
             price: props.totalPrice,
             data: userInfo,
-            date: new Date().toLocaleTimeString()
+            date: dataFns.format(new Date(), 'MM.DD.YYYY'),
+            time: clearTime
         }
         axios.post(`/orders.json?auth=${props.token}`, userOrder)
             .then(resp => {
@@ -45,7 +49,7 @@ const Checkout = props => {
             <ContactData sendFunc={sendOrderHAndler}/>
         </div>
     )
-
+    console.log(dataFns.format(new Date(), 'MM.DD.YYYY'))
     return (
         <div className={classes.MainBackground}>
         { error ? <FetchError showButton={false}>{error.message}</FetchError> : CheckoutComp }

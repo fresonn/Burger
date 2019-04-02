@@ -53,38 +53,41 @@ const Auth = (props) => {
     )
 
     const FormElement =  (
-        <div className={classes.AuthFormWrapper}>
-        { props.loading ? loadingUI : props.error ? errorUI : null}
-            <Form>
-                <div className={classes.InputsContainer}>
-                    { inputItems.map((input, ind) => {
-                        const name = input.name
-                        return (
-                            <div key={ind}>
-                                <Field
-                                    className={classes.AuthInput} 
-                                    name={name}
-                                    type={input.inputType}
-                                    placeholder={input.placeholder}
-                                />
-                                { touched[name] && errors[name] && <p className={classes.InputInfo}>{errors[name]}</p> }
-                            </div>
-                        )
-                    }) }
+        <section>
+            <div className={classes.AuthFormWrapper}>
+            { props.loading ? loadingUI : props.error ? errorUI : null}
+                <Form>
+                    <div className={classes.InputsContainer}>
+                        { inputItems.map((input, ind) => {
+                            const name = input.name
+                            return (
+                                <div key={ind}>
+                                    <Field
+                                        className={classes.AuthInput} 
+                                        name={name}
+                                        type={input.inputType}
+                                        placeholder={input.placeholder}
+                                    />
+                                    { touched[name] && errors[name] && <p className={classes.InputInfo}>{errors[name]}</p> }
+                                </div>
+                            )
+                        }) }
+                    </div>
+                    <div className={classes.AuthButtonContainer}>
+                        <Button classFor='AuthFormButton'  type='submit'>
+                            {props.isSignupMode ? 'sign up' : 'sign in' }
+                        </Button>
+                    </div>
+                </Form>
+                <div className={classes.Switcher}>
+                    <label className={classes.Switch}>
+                        <input type="checkbox" value={props.isSignupMode} checked={props.isSignupMode} onChange={props.onChangeMode} />
+                        <div className={classes.Slider}></div>
+                    </label>
                 </div>
-                <div className={classes.AuthButtonContainer}>
-                    <Button classFor='AuthFormButton'  type='submit'>
-                        {props.isSignupMode ? 'sign up' : 'sign in' }
-                    </Button>
-                </div>
-            </Form>
-            <div className={classes.Switcher}>
-                <label className={classes.Switch}>
-                    <input type="checkbox" value={props.isSignupMode} checked={props.isSignupMode} onChange={props.onChangeMode} />
-                    <div className={classes.Slider}></div>
-                </label>
             </div>
-        </div>
+            <div className={classes.FeedbackContainer} />
+        </section>
     )
 
     return props.token ? <Redirect to='/' /> : FormElement

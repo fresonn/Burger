@@ -28,8 +28,6 @@ const Layout = (props) => {
         changeDrawer(!drawer)
     }  
 
-    console.log(links)
-
     return (
         <div className={classes.PageWrapper}>
             <ToolBar 

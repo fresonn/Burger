@@ -39,7 +39,7 @@ $order_cancel: rgb(222, 51, 51);
 .AuthInput {
     border: none;
     box-sizing: border-box;
-    background: #fff;
+    background: rgb(255, 255, 255);
     border: none;
     margin: 20px 0 3px 0;
     font: inherit;
@@ -145,17 +145,20 @@ input:checked + .Slider:before {
 }
 
 
+.FeedbackContainer {
+    width: 100%;
+    min-height: 220px;
+    background: url('../../assets/coreImages/feedback.svg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 
 
 @media (min-width: $tablet-width) {
-
-    .InputsContainer {
-
+    .FeedbackContainer {
+        height: 360px;
     }
 
-    // .AuthFormWrapper {
-    //     background-color: rgb(43, 226, 211);
-    // }
     .AuthInput {
         outline: none;
         display: block;

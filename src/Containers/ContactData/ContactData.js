@@ -51,7 +51,7 @@ const ContactData = class extends Component {
             })
         }
         return (
-            <div className={classes.MainOrderForm}>
+            <section className={classes.MainOrderForm}>
                 <h1 className={classes.Title}>Сonfirm your order</h1>
                 <p className={classes.SubTitle}>Please, enter your data!</p>
                 <Form>
@@ -77,7 +77,7 @@ const ContactData = class extends Component {
                         >cancel</Button>
                     </div>
                 </Form>
-            </div>
+            </section>
         )
     }
 }

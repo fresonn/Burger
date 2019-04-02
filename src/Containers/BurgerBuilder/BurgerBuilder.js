@@ -10,7 +10,7 @@ import BuildControls from '../../Components/BuildControls/BuildControls'
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary'
 import OrderLoader from '../../Components/UI/Loaders/LogoLoader/LogoLoader'
 import FetchError from '../../Components/UI/FetchError/FetchError'
-
+import AddContainer from '../../Components/AddContainer/AddContainer'
 import Modal from '../../Components/UI/Modal/Modal'
 import withError from '../../Hoc/withError/withError'
 
@@ -73,6 +73,7 @@ const BurgerBuilder = class extends Component {
         return (
             <>
                 {!this.props.prefetchDataError ? controlBurger : <FetchError retryFunc={this.props.onRetryInitPrice}/>}
+                <AddContainer />
             </>
         )
     }
