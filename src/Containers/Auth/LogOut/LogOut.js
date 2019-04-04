@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import * as AT from '../../../redux/actionType'
+import { logOut } from '../../../redux/actions/authAction'
 
 
 const LogOut = (props) => {
@@ -15,7 +15,7 @@ const LogOut = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLogOut: () => dispatch({type: AT.AUTH_LOGOUT})
+        onLogOut: () => dispatch(logOut())
     }
 }
 

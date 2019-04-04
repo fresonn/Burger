@@ -26,10 +26,10 @@ const Auth = (props) => {
     ]
 
     useEffect(() => {
-        console.log(props.token)
         if (props.token) {
             props.history.replace('/')
         }
+        document.title = 'Authorization'
     }, [])
 
     const loadingUI = (

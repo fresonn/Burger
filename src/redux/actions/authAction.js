@@ -37,6 +37,9 @@ export const authFail = (err) => {
 
 
 export const logOut = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('expirationTime')
+    localStorage.removeItem('userId')
     return {
         type: AT.AUTH_LOGOUT
     }
@@ -48,6 +51,32 @@ export const checkAuthExpiresIn = (time) => {
         setTimeout(() => {
             dispatch(logOut())
         }, time * 1000) // т.к в ms
+    }
+}
+
+
+export const authCheckSession = () => {
+    return (dispatch) => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            dispatch(logOut())
+        } else {
+            const expirationTime =  new Date(localStorage.getItem('expirationTime'))
+            if (expirationTime > new Date()) {
+
+                const _id = localStorage.getItem('userId')
+
+                const userData = {
+                    token: token,
+                    userId: _id
+                }
+
+                dispatch(authSuccess(userData))
+                dispatch(checkAuthExpiresIn( (expirationTime.getTime() - new Date().getTime()) / 1000 ))
+            } else {
+                dispatch(logOut())
+            }
+        }
     }
 }
 
@@ -67,6 +96,11 @@ export const auth = (dataObject, isSignup) => {
         }
         axios.post(_url, authData)
             .then(resp => {
+                const expirationTime = new Date(new Date().getTime() + resp.data.expiresIn * 1000) // 3600
+                localStorage.setItem('token', resp.data.idToken)
+                localStorage.setItem('expirationTime', expirationTime)
+                localStorage.setItem('userId', resp.data.localId)
+
                 dispatch(authSuccess(resp.data))
                 dispatch(checkAuthExpiresIn(resp.data.expiresIn))
             })

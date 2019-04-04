@@ -53,6 +53,17 @@ $tablet-width: 768px;
 
 $order-button_ds: rgb(179, 112, 63);
 
+@keyframes _forOrderButton {
+    from {
+        transform: scale(1) 
+    }
+    50% {
+        transform: scale(1.2)
+    }
+    100% {
+        transform: scale(1) 
+    }
+}
 
 .orderButton {
     margin: 15px 0;
@@ -66,14 +77,15 @@ $order-button_ds: rgb(179, 112, 63);
     text-shadow: 1px 1px 2px rgb(23, 23, 23);
     border: 2px solid saddlebrown;
     border-radius: 8px 0 0 8px;
-    background-color: #CE8F2D;
-    transition: background-color 170ms ease-in;
+    background-color: rgb(20, 173, 9);
+    transition: all 170ms ease-in;
+
     &:hover {
         cursor: pointer;
-        background-color: #CE8F2D;
+        background-color: rgb(23, 195, 11);
     }
     &:active {
-        background-color: $order-button_ds;
+        background-color: rgb(20, 173, 9);
     }
     &:disabled {
         cursor: default;
@@ -81,6 +93,10 @@ $order-button_ds: rgb(179, 112, 63);
         background-color: $order-button_ds;
         text-shadow: none;
     }
+}
+
+.orderButton:not(:disabled) {
+    animation: _forOrderButton 500ms ease-in;
 }
 
 

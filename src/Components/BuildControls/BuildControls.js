@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './BuildControls.scss'
-
+import { withRouter } from 'react-router-dom'
 
 import Control from './Control/Control'
 import Button from '../UI/Button/Button'
@@ -15,8 +15,16 @@ const controls = [
 
 
 const BuildControls = props => {
-    const {isOrdered, purchasingStart, clearBurger} = props
+    const {isOrdered, purchasingStart, clearBurger, isAuthWithToken} = props
+    // тект для кнопки
+    const text = !isAuthWithToken ? 'sign in to continue' : 'order now'
+    // со. функция 
 
+    const whenIsntAuth = () => {
+        props.history.push('/auth')
+    }
+
+    console.log('o', props)
     return (
         <section>
             <div className={classes.BuildControls}>
@@ -34,9 +42,9 @@ const BuildControls = props => {
                 <div  className={classes.ButtonContainer}>
                 <Button
                     classFor={'orderButton'}
-                    clickFunc={purchasingStart}
+                    clickFunc={isAuthWithToken ? purchasingStart: whenIsntAuth}
                     disabled={!isOrdered}
-                >order now</Button>
+                >{text}</Button>
                 <Button
                     clickFunc={clearBurger}
                     classFor={'ClearBurger'}
@@ -47,4 +55,4 @@ const BuildControls = props => {
     )
 }
 
-export default BuildControls
+export default withRouter(BuildControls)

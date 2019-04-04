@@ -16,6 +16,7 @@ const Orders = props => {
 
     useEffect(() => {
         props.onLoadedOrders(props.token)
+        document.title = 'Orders'
         return () => {
             props.onClear()
         }

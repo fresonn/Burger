@@ -19,6 +19,7 @@ const BurgerBuilder = class extends Component {
 
     componentDidMount() {
         this.props.onInitPrice()
+        document.title = 'Burger'
     }
 
     componentWillUnmount() {
@@ -31,6 +32,7 @@ const BurgerBuilder = class extends Component {
     }
 
     render() {
+        console.log(this.props)
         let modal = (
             <Modal showModal={this.props.purechasing}
                    closeModal={this.props.onChangePurechasing}
@@ -66,6 +68,7 @@ const BurgerBuilder = class extends Component {
                     isOrdered={this.props.totalPrice > 0}
                     purchasingStart={this.props.onChangePurechasing}
                     clearBurger={this.props.onClearBurger}
+                    isAuthWithToken={this.props.isAuthWithToken}
                 />
             </>
         )
@@ -86,7 +89,8 @@ const mapStateToProps = (state) => {
         totalPrice: state.builder.totalPrice,
         loading: state.builder.loading,
         prefetchDataError: state.builder.prefetchDataError,
-        purechasing: state.builder.purechasing
+        purechasing: state.builder.purechasing,
+        isAuthWithToken: state.auth.token
     }
 }
 

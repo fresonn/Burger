@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import './index.scss'
+import { authCheckSession } from './redux/actions/authAction'
 
 // HOC
 import Layout from './Hoc/Layout/Layout'
@@ -14,6 +15,11 @@ import Auth from './Containers/Auth/Auth'
 import LogOut from './Containers/Auth/LogOut/LogOut'
 
 const App = class extends Component {
+
+    componentDidMount() {
+        this.props.onCheckAutoLogin()
+    }
+
     render() {
         const { totalPrice, isAuthenticated } = this.props
         return (
@@ -37,4 +43,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCheckAutoLogin: () => dispatch(authCheckSession())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
