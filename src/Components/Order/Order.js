@@ -21,9 +21,11 @@ const Order = props => {
     })
 
     const whenOrdered = dateFns.distanceInWords(
-        new Date(`${props.date} ${props.time}`),
-        new Date()
+        // new Date(`${props.date} ${props.time}`),
+        new Date(props.time),
+        new Date(),
     )
+
 
     return (
         <article className={classes.Order}>

@@ -7,9 +7,22 @@
     overflow: auto;
     text-align: center;
     font-weight: 700;
+    animation: added_item 100ms ease-in;
     &::-webkit-scrollbar{
         display: none;
     }
+}
+
+@keyframes added_item {
+    from { transform: scale(1.2) }
+    to { transform: scale(1) }
+}
+
+
+.BurgerTitle {
+    text-transform: uppercase;
+    color: #161616;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 

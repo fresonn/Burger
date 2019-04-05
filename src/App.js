@@ -19,8 +19,8 @@ const App = class extends Component {
     componentDidMount() {
         this.props.onCheckAutoLogin()
     }
-
     render() {
+
         const { totalPrice, isAuthenticated } = this.props
         return (
             <Layout>

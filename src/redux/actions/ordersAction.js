@@ -21,10 +21,9 @@ export const clearOrders = () => {
     }
 }
 
-
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return (dispatch) => {        
-        axios.get('/orders.json?auth=' + token)
+        axios.get('/orders.json?auth=' + token + `&orderBy="userId"&equalTo="${userId}"`) // для firebase '&' = фильтр
             .then(res => {
                 const received = []
                 for (const key in res.data) {

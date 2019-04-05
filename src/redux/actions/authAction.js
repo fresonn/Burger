@@ -54,33 +54,6 @@ export const checkAuthExpiresIn = (time) => {
     }
 }
 
-
-export const authCheckSession = () => {
-    return (dispatch) => {
-        const token = localStorage.getItem('token')
-        if (!token) {
-            dispatch(logOut())
-        } else {
-            const expirationTime =  new Date(localStorage.getItem('expirationTime'))
-            if (expirationTime > new Date()) {
-
-                const _id = localStorage.getItem('userId')
-
-                const userData = {
-                    token: token,
-                    userId: _id
-                }
-
-                dispatch(authSuccess(userData))
-                dispatch(checkAuthExpiresIn( (expirationTime.getTime() - new Date().getTime()) / 1000 ))
-            } else {
-                dispatch(logOut())
-            }
-        }
-    }
-}
-
-
 export const auth = (dataObject, isSignup) => {
     return (dispatch) => {
         dispatch(authStart())
@@ -107,6 +80,30 @@ export const auth = (dataObject, isSignup) => {
             .catch(err => {
                 dispatch(authFail(err.response.data.error.message))
             })
+    }
+}
+
+export const authCheckSession = () => {
+    return (dispatch) => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            dispatch(logOut())
+        } else {
+            const expirationTime = new Date(localStorage.getItem('expirationTime'))
+            
+            if (expirationTime > new Date()) {
+                const _id = localStorage.getItem('userId')
+
+                const authData = {
+                    idToken: token,
+                    localId: _id
+                }
+                dispatch(authSuccess(authData))
+                dispatch(checkAuthExpiresIn( (expirationTime.getTime() - new Date().getTime()) / 1000 ))
+            } else {
+                dispatch(logOut())
+            }
+        }
     }
 }
 

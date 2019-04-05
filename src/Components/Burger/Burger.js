@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom'
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
 
 const Burger = props => {
-    // console.log('[Burger.js]', props)
     let ingredients = Object.entries(props.ingredients)
         .map((ingred) => {
             return [...Array(ingred[1])].map((_, i) => {
@@ -22,7 +21,7 @@ const Burger = props => {
         }, [])
     if (!ingredients.length) {
         ingredients = (
-            <h1>Add something</h1>
+            <h1 className={classes.BurgerTitle}>Add something</h1>
         )
     }
     return (

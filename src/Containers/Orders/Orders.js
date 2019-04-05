@@ -15,7 +15,7 @@ import EmptyContainer from '../../Components/UI/EmptyContainer/EmptyContainer'
 const Orders = props => {    
 
     useEffect(() => {
-        props.onLoadedOrders(props.token)
+        props.onLoadedOrders(props.token, props.userId)
         document.title = 'Orders'
         return () => {
             props.onClear()
@@ -32,7 +32,7 @@ const Orders = props => {
                 price={order.price}
              />
         )
-    })
+    }).reverse()
 
     return (
         <div className={props.orders.length !== 0 ? classes.Orders : classes.EmptyOrders}>
@@ -49,14 +49,14 @@ const mapStateToProps = (state) => {
         orders: state.orders.orders,
         loading: state.orders.loading,
         error: state.orders.error,
-        // проверка на token 
-        token: state.auth.token
+        token: state.auth.token, // проверка на token 
+        userId: state.auth.userId
     }
 }
 
 const mapDispathToProps = (dispatch) => {
     return {
-        onLoadedOrders: (token) => dispatch(toOrder.fetchOrders(token)),
+        onLoadedOrders: (token, userId) => dispatch(toOrder.fetchOrders(token, userId)),
         onClear: () => dispatch(toOrder.clearOrders())
     }
 }

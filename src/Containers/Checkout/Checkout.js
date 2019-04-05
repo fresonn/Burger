@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from './Checkout.scss'
 import axios from '../../axios_config/axios_config'
 import { connect } from 'react-redux'
@@ -15,17 +15,21 @@ const Checkout = props => {
     const [loading, changeLoading] = useState(false)
     const [error, changeError] = useState(null)
 
+    useEffect(() => {
+        document.title = 'Continue order'
+    }, [])
+
     const sendOrderHAndler = userInfo => {
         changeLoading(true)
-        let time = new Date().toLocaleTimeString()
-        let clearTime = time.substr(0, time.length - 3)
-
+    
         const userOrder = {
             ingredients: props.ingredients,
             price: props.totalPrice,
             data: userInfo,
             date: dataFns.format(new Date(), 'MM.DD.YYYY'),
-            time: clearTime
+            time: new Date(),
+            userId: props.userId
+
         }
         axios.post(`/orders.json?auth=${props.token}`, userOrder)
             .then(resp => {
@@ -49,7 +53,6 @@ const Checkout = props => {
             <ContactData sendFunc={sendOrderHAndler}/>
         </div>
     )
-    console.log(dataFns.format(new Date(), 'MM.DD.YYYY'))
     return (
         <div className={classes.MainBackground}>
         { error ? <FetchError showButton={false}>{error.message}</FetchError> : CheckoutComp }
@@ -62,7 +65,8 @@ const mapStateToProps = (state) => {
     return {
         ingredients: state.builder.ingredients,
         totalPrice: state.builder.totalPrice,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.userId
     }
 }
 

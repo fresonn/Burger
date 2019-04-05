@@ -24,7 +24,6 @@ const BuildControls = props => {
         props.history.push('/auth')
     }
 
-    console.log('o', props)
     return (
         <section>
             <div className={classes.BuildControls}>
