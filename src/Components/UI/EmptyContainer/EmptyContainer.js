@@ -10,8 +10,6 @@ const EmptyContainer = props => {
                 <img src={Img} alt="There is no order"/>
                 <p>Empty order list</p>
             </div>
-            {/* <img src={Img} alt="There is no order"/>
-            <p>Empty order list</p> */}
         </div>
     )
 }

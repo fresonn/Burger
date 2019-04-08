@@ -47,6 +47,7 @@ const BuildControls = props => {
                 <Button
                     clickFunc={clearBurger}
                     classFor={'ClearBurger'}
+                    disabled={!isOrdered}
                 >clear</Button>
                 </div>
             </div>

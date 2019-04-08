@@ -1,7 +1,5 @@
 import React from 'react'
 import classes from './OrderSummary.scss'
-
-
 import Button from '../../UI/Button/Button'
 
 const OrderSummary = (props) => {

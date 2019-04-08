@@ -47,5 +47,4 @@ const BurgerIngredient = props => {
     return ingredient
 }
 
-
 export default BurgerIngredient

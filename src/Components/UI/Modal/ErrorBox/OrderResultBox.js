@@ -1,9 +1,6 @@
 import React from 'react'
 import classes from './OrderResultBox.scss'
-
 import ErrorImage from '../../../../assets/images/error-image.svg'
-// import SuccessImage from '../../../../assets/images/success.svg's
-
 
 const OrderResultBox = props => {
     return (

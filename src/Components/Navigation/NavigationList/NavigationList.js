@@ -1,16 +1,8 @@
 import React from 'react'
 import classes from './NavigationList.scss'
-
-
 import NavigationItem from './NavItem/NavigationItem'
 
 const NavigationList = (props) => {
-
-    // const links = [
-    //     { title: 'Burger Builder', address: '/', exact: true },
-    //     { title: 'Orders', address: '/orders', exact: false},
-    //     { title: 'authorization', address: '/auth', exact: false}
-    // ]
 
     const { links } = props
 

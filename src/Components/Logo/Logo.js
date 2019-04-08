@@ -1,7 +1,5 @@
 import React from 'react'
 import classes from './Logo.scss'
-
-
 import LogoBurger from '../../assets/images/burger-logo.svg'
 
 const Logo = (props) => {

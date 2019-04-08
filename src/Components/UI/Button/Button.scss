@@ -99,7 +99,6 @@ $order-button_ds: rgb(179, 112, 63);
     animation: _forOrderButton 500ms ease-in;
 }
 
-
 .ClearBurger {
     margin: 15px 0;
     display: block;
@@ -124,6 +123,9 @@ $order-button_ds: rgb(179, 112, 63);
     }
 }
 
+.ClearBurger:disabled {
+    color: rgb(227, 227, 227);
+}
 
 
 // DRAWER
@@ -161,7 +163,6 @@ $order-button_ds: rgb(179, 112, 63);
 
 
 }
-
 
 
 .ReconnectButton {
@@ -219,13 +220,6 @@ $lighting_percent: 9%;
         color: lighten($order_cancel, $lighting_percent);
     }
 }
-
-
-// FROM
-
-// .FormOrderButton {
-    
-// }
 
 
 // Auth

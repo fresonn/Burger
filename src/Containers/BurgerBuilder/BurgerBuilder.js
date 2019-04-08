@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import classes from './BurgerBuilder.scss'
 import { connect } from 'react-redux'
 import * as Builder from '../../redux/actions/burgerBuilderAction'
 
