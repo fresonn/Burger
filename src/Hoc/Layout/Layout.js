@@ -32,8 +32,7 @@ const Layout = (props) => {
         <div className={classes.PageWrapper}>
             <ToolBar 
                 links={links} 
-                isOpen={drawer} 
-                closeFunc={drawerCloseHandler}
+                closeFunc={changeDrawer}
             />
             <Drawer 
                 links={links} 

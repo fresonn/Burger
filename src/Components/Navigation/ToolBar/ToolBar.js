@@ -8,7 +8,6 @@ import Button from '../../UI/Button/Button'
 
 const ToolBar = (props) => {
     const {closeFunc, links} = props
-    
 
     const onRootPage = () => {
         props.history.replace('/')
