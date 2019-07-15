@@ -5,7 +5,7 @@ import { withFormik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Button from '../../Components/UI/Button/Button'
 
-const ContactData = class extends Component {
+class ContactData extends Component {
     state = {
         inputs: {
             name: {

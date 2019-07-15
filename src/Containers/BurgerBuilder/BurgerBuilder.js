@@ -13,7 +13,7 @@ import Modal from '../../Components/UI/Modal/Modal'
 import withError from '../../Hoc/withError/withError'
 
 
-const BurgerBuilder = class extends Component {
+class BurgerBuilder extends Component {
 
     componentDidMount() {
         this.props.onInitPrice()

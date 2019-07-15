@@ -14,7 +14,7 @@ import Orders from './Containers/Orders/Orders'
 import Auth from './Containers/Auth/Auth'
 import LogOut from './Containers/Auth/LogOut/LogOut'
 
-const App = class extends Component {
+class App extends Component {
 
     componentDidMount() {
         this.props.onCheckAutoLogin()
