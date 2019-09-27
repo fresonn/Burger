@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import classes from './Checkout.scss'
 import axios from '../../axios_config/axios_config'
 import { connect } from 'react-redux'
-import dataFns from 'date-fns'
+import { format } from 'date-fns'
 import CheckoutOrder from '../../Components/CheckoutOrder/CheckoutOrder'
 import ContactData from '../ContactData/ContactData'
 
@@ -26,7 +26,7 @@ const Checkout = props => {
             ingredients: props.ingredients,
             price: props.totalPrice,
             data: userInfo,
-            date: dataFns.format(new Date(), 'MM.DD.YYYY'),
+            date: format(new Date(), 'MM.dd.yyyy'), // data-fns в вресии 2.0+
             time: new Date(),
             userId: props.userId
 

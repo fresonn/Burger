@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Order.scss'
-import dateFns from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 
 const Order = props => {
     const ingredients = []
@@ -20,10 +20,9 @@ const Order = props => {
         }
     })
 
-    const whenOrdered = dateFns.distanceInWords(
-        // new Date(`${props.date} ${props.time}`),
+    const whenOrdered = formatDistanceToNow( // data-fns в вресии 2.0+
         new Date(props.time),
-        new Date(),
+        { addSuffix: true }
     )
 
 

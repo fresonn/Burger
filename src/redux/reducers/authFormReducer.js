@@ -2,7 +2,7 @@ import * as AT from '../actionType'
 
 const initialState = {
     loading: false,
-    isSignupMode: true,
+    isSignupMode: false,
     error: null,
     token: null,
     userId: null
